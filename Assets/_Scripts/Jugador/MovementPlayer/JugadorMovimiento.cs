@@ -8,7 +8,9 @@ public class JugadorMovimiento : MonoBehaviour
 
     public float velocidad = 5f;
     public float velocidadRotacion = 10f;
-
+    public float velocidadDash = 30f;
+    private float velocidadActual;
+    public float tiempoDeDash = 0.15f;
     //private Controles controles;
     //private Vector2 inputMovimiento;
 
@@ -22,6 +24,8 @@ public class JugadorMovimiento : MonoBehaviour
         //controles = new Controles();
 
         control.eventoMovimiento+= movimientoBase;
+        control.EventoDash += MovimientoDash;
+
 
     }
 
@@ -31,11 +35,15 @@ public class JugadorMovimiento : MonoBehaviour
         //controles.Jugador.Mover.performed += ctx => inputMovimiento = ctx.ReadValue<Vector2>();
         //controles.Jugador.Mover.canceled += ctx => inputMovimiento = Vector2.zero;
     }
-
+    private void Start()
+    {
+        velocidadActual = velocidad;
+    }
     private void OnDisable()
     {
         //controles.Jugador.Disable();
         control.eventoMovimiento -= movimientoBase;
+        control.EventoDash -= MovimientoDash;
     }
 
     private void movimientoBase(Vector2 axis)
@@ -46,13 +54,18 @@ public class JugadorMovimiento : MonoBehaviour
 
 
     }
+    private void MovimientoDash() 
+    { 
+        velocidadActual = velocidadDash;
+        Invoke("ReiniciarVelocidad", tiempoDeDash);
 
-
+    }
+    private void ReiniciarVelocidad() { velocidadActual = velocidad; }
     private void FixedUpdate()
     {
        
 
-        rigidbodyJugador.linearVelocity = direccion*velocidad;
+        rigidbodyJugador.linearVelocity = direccion*velocidadActual;
 
 
         // Movimiento

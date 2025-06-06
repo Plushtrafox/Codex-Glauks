@@ -6,7 +6,7 @@
             "id": "1cb0dd92-121d-4e7b-89ee-228ccdbe1423",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "BotonDash",
                     "type": "Button",
                     "id": "fa51c3d7-6acd-4e7d-911a-1cb5eee645e2",
                     "expectedControlType": "",
@@ -28,11 +28,11 @@
                 {
                     "name": "",
                     "id": "b051edbf-a7ea-45ae-ae36-b20e6eae5f6c",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "BotonDash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
