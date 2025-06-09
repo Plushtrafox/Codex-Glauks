@@ -34,9 +34,5 @@ public class enemyMove : MonoBehaviour
     }
     void Attack()
     {
-        if ()
-        {
-            
-        }
     }
 }
