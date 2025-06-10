@@ -7,13 +7,18 @@ public class HealthSO : ScriptableObject
     private int health = 100;
     private int maxHealth = 100;
 
-    void Start()
+    private void OnEnable()
     {
         health = maxHealth; // Initialize health to 100 at the start
     }
-    void Damage(int quantity)
+    public void Damage(int quantity)
     {
         health -= quantity;
+        
+        if (health < 0)
+        {
+            Debug.Log("mamavuevo");
+        }
        
     }
 }
