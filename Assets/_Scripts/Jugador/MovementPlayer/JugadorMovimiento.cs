@@ -23,7 +23,7 @@ public class JugadorMovimiento : MonoBehaviour
     {
         //controles = new Controles();
 
-        control.eventoMovimiento+= movimientoBase;
+        control.EventoMovimiento+= movimientoBase;
         control.EventoDash += MovimientoDash;
 
 
@@ -42,7 +42,7 @@ public class JugadorMovimiento : MonoBehaviour
     private void OnDisable()
     {
         //controles.Jugador.Disable();
-        control.eventoMovimiento -= movimientoBase;
+        control.EventoMovimiento -= movimientoBase;
         control.EventoDash -= MovimientoDash;
     }
 

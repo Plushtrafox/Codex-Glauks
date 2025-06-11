@@ -108,6 +108,15 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interactuar"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a4a35ed-4346-4182-86e8-4343e38f366a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +185,17 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""action"": ""Mover"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5aae0156-4462-4ed7-80d0-cf75d6a44878"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactuar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +206,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         m_Jugador = asset.FindActionMap("Jugador", throwIfNotFound: true);
         m_Jugador_BotonDash = m_Jugador.FindAction("BotonDash", throwIfNotFound: true);
         m_Jugador_Mover = m_Jugador.FindAction("Mover", throwIfNotFound: true);
+        m_Jugador_Interactuar = m_Jugador.FindAction("Interactuar", throwIfNotFound: true);
     }
 
     ~@Controles()
@@ -268,6 +289,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     private List<IJugadorActions> m_JugadorActionsCallbackInterfaces = new List<IJugadorActions>();
     private readonly InputAction m_Jugador_BotonDash;
     private readonly InputAction m_Jugador_Mover;
+    private readonly InputAction m_Jugador_Interactuar;
     /// <summary>
     /// Provides access to input actions defined in input action map "Jugador".
     /// </summary>
@@ -287,6 +309,10 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Jugador/Mover".
         /// </summary>
         public InputAction @Mover => m_Wrapper.m_Jugador_Mover;
+        /// <summary>
+        /// Provides access to the underlying input action "Jugador/Interactuar".
+        /// </summary>
+        public InputAction @Interactuar => m_Wrapper.m_Jugador_Interactuar;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -319,6 +345,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Mover.started += instance.OnMover;
             @Mover.performed += instance.OnMover;
             @Mover.canceled += instance.OnMover;
+            @Interactuar.started += instance.OnInteractuar;
+            @Interactuar.performed += instance.OnInteractuar;
+            @Interactuar.canceled += instance.OnInteractuar;
         }
 
         /// <summary>
@@ -336,6 +365,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Mover.started -= instance.OnMover;
             @Mover.performed -= instance.OnMover;
             @Mover.canceled -= instance.OnMover;
+            @Interactuar.started -= instance.OnInteractuar;
+            @Interactuar.performed -= instance.OnInteractuar;
+            @Interactuar.canceled -= instance.OnInteractuar;
         }
 
         /// <summary>
@@ -390,5 +422,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMover(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interactuar" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteractuar(InputAction.CallbackContext context);
     }
 }

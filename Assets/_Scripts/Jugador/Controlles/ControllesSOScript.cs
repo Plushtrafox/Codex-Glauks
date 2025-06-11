@@ -9,10 +9,10 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
 
     public delegate void tipoEventoAxis2(Vector2 axis);
     public delegate void tipoEventoBotonSimple();
-
-
-
-    public event tipoEventoAxis2 eventoMovimiento;
+    
+    
+    public event tipoEventoBotonSimple EventoInteractuar;
+    public event tipoEventoAxis2 EventoMovimiento;
     public event tipoEventoBotonSimple EventoDash;
 
 
@@ -32,7 +32,7 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
 
     public void OnMover(InputAction.CallbackContext context)
     {
-        eventoMovimiento?.Invoke(context.ReadValue<Vector2>());
+        EventoMovimiento?.Invoke(context.ReadValue<Vector2>());
     }
 
   
@@ -42,5 +42,14 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
         if(context.phase ==InputActionPhase.Started){ EventoDash?.Invoke(); }
         
 
+    }
+
+
+    public void OnInteractuar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            EventoInteractuar?.Invoke();
+        }
     }
 }
