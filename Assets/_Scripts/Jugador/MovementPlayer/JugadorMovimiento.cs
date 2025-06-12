@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,9 @@ public class JugadorMovimiento : MonoBehaviour
     Vector3 direccion;
 
     [SerializeField] private Camera camara;
+    [SerializeField] private float velocidadActual;
+    [SerializeField] private float velocidadDash = 10f;
+    [SerializeField] private float tiempoDeDash = 0.5f; // Duración del dash en segundos
 
     private void Awake()
     {
@@ -46,8 +50,25 @@ public class JugadorMovimiento : MonoBehaviour
 
 
     }
+    private void MovimientoDash() 
+    { 
+        velocidadActual = velocidadDash;
+        //Time.timeScale = 0.1f; // Asegurarse de que el tiempo no esté pausado
+        //Time.fixedDeltaTime = 0.02f * Time.timeScale; // Ajustar el tiempo fijo para que coincida con el tiempo escaladow
+        Invoke("ReiniciarVelocidad", tiempoDeDash);
 
-
+    }
+    IEnumerator nombre()
+    {
+        yield return new WaitForSeconds(tiempoDeDash);
+    ReiniciarVelocidad();
+    }
+    private void ReiniciarVelocidad() 
+    {
+        
+        //Time.timeScale = 1f; // Reiniciar el tiempo a su valor normal
+        velocidadActual = velocidad; 
+    }
     private void FixedUpdate()
     {
        
