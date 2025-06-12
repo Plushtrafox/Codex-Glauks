@@ -10,6 +10,8 @@ public class JugadorMovimiento : MonoBehaviour
     public float velocidad = 5f;
     public float velocidadRotacion = 10f;
 
+    //[SerializeField] private CharacterController controlJugador;
+
     //private Controles controles;
     //private Vector2 inputMovimiento;
 
@@ -35,6 +37,10 @@ public class JugadorMovimiento : MonoBehaviour
         //controles.Jugador.Mover.performed += ctx => inputMovimiento = ctx.ReadValue<Vector2>();
         //controles.Jugador.Mover.canceled += ctx => inputMovimiento = Vector2.zero;
     }
+    private void Start()
+    {
+        velocidadActual = velocidad; // Inicializar la velocidad actual al valor de velocidad normal
+    }
 
     private void OnDisable()
     {
@@ -48,6 +54,9 @@ public class JugadorMovimiento : MonoBehaviour
         direccion = camara.transform.TransformDirection(direccion); // Convertir a espacio de la cámara
         direccion.y = 0;// Proyectar en el plano horizontal
 
+        //controlJugador.Move(direccion * velocidad * Time.deltaTime);
+
+
 
     }
     private void MovimientoDash() 
@@ -58,11 +67,7 @@ public class JugadorMovimiento : MonoBehaviour
         Invoke("ReiniciarVelocidad", tiempoDeDash);
 
     }
-    IEnumerator nombre()
-    {
-        yield return new WaitForSeconds(tiempoDeDash);
-    ReiniciarVelocidad();
-    }
+
     private void ReiniciarVelocidad() 
     {
         
