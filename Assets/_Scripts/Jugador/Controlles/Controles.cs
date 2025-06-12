@@ -92,7 +92,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             ""id"": ""1cb0dd92-121d-4e7b-89ee-228ccdbe1423"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""BotonDash"",
                     ""type"": ""Button"",
                     ""id"": ""fa51c3d7-6acd-4e7d-911a-1cb5eee645e2"",
                     ""expectedControlType"": """",
@@ -108,17 +108,26 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interactuar"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a4a35ed-4346-4182-86e8-4343e38f366a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""b051edbf-a7ea-45ae-ae36-b20e6eae5f6c"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""BotonDash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -176,6 +185,17 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""action"": ""Mover"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5aae0156-4462-4ed7-80d0-cf75d6a44878"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactuar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -184,8 +204,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
 }");
         // Jugador
         m_Jugador = asset.FindActionMap("Jugador", throwIfNotFound: true);
-        m_Jugador_Newaction = m_Jugador.FindAction("New action", throwIfNotFound: true);
+        m_Jugador_BotonDash = m_Jugador.FindAction("BotonDash", throwIfNotFound: true);
         m_Jugador_Mover = m_Jugador.FindAction("Mover", throwIfNotFound: true);
+        m_Jugador_Interactuar = m_Jugador.FindAction("Interactuar", throwIfNotFound: true);
     }
 
     ~@Controles()
@@ -266,8 +287,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     // Jugador
     private readonly InputActionMap m_Jugador;
     private List<IJugadorActions> m_JugadorActionsCallbackInterfaces = new List<IJugadorActions>();
-    private readonly InputAction m_Jugador_Newaction;
+    private readonly InputAction m_Jugador_BotonDash;
     private readonly InputAction m_Jugador_Mover;
+    private readonly InputAction m_Jugador_Interactuar;
     /// <summary>
     /// Provides access to input actions defined in input action map "Jugador".
     /// </summary>
@@ -280,13 +302,17 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// </summary>
         public JugadorActions(@Controles wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Jugador/Newaction".
+        /// Provides access to the underlying input action "Jugador/BotonDash".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_Jugador_Newaction;
+        public InputAction @BotonDash => m_Wrapper.m_Jugador_BotonDash;
         /// <summary>
         /// Provides access to the underlying input action "Jugador/Mover".
         /// </summary>
         public InputAction @Mover => m_Wrapper.m_Jugador_Mover;
+        /// <summary>
+        /// Provides access to the underlying input action "Jugador/Interactuar".
+        /// </summary>
+        public InputAction @Interactuar => m_Wrapper.m_Jugador_Interactuar;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -313,12 +339,15 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_JugadorActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_JugadorActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @BotonDash.started += instance.OnBotonDash;
+            @BotonDash.performed += instance.OnBotonDash;
+            @BotonDash.canceled += instance.OnBotonDash;
             @Mover.started += instance.OnMover;
             @Mover.performed += instance.OnMover;
             @Mover.canceled += instance.OnMover;
+            @Interactuar.started += instance.OnInteractuar;
+            @Interactuar.performed += instance.OnInteractuar;
+            @Interactuar.canceled += instance.OnInteractuar;
         }
 
         /// <summary>
@@ -330,12 +359,15 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="JugadorActions" />
         private void UnregisterCallbacks(IJugadorActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @BotonDash.started -= instance.OnBotonDash;
+            @BotonDash.performed -= instance.OnBotonDash;
+            @BotonDash.canceled -= instance.OnBotonDash;
             @Mover.started -= instance.OnMover;
             @Mover.performed -= instance.OnMover;
             @Mover.canceled -= instance.OnMover;
+            @Interactuar.started -= instance.OnInteractuar;
+            @Interactuar.performed -= instance.OnInteractuar;
+            @Interactuar.canceled -= instance.OnInteractuar;
         }
 
         /// <summary>
@@ -377,12 +409,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     public interface IJugadorActions
     {
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "BotonDash" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnBotonDash(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Mover" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -390,5 +422,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMover(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interactuar" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteractuar(InputAction.CallbackContext context);
     }
 }

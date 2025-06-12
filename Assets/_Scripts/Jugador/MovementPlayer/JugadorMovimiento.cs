@@ -10,7 +10,9 @@ public class JugadorMovimiento : MonoBehaviour
     public float velocidad = 5f;
     public float velocidadRotacion = 10f;
 
-    //[SerializeField] private CharacterController controlJugador;
+    public float velocidadDash = 30f;
+    private float velocidadActual;
+    public float tiempoDeDash = 0.15f;
 
     //private Controles controles;
     //private Vector2 inputMovimiento;
@@ -21,13 +23,15 @@ public class JugadorMovimiento : MonoBehaviour
     [SerializeField] private Camera camara;
     [SerializeField] private float velocidadActual;
     [SerializeField] private float velocidadDash = 10f;
-    [SerializeField] private float tiempoDeDash = 0.5f; // DuraciÛn del dash en segundos
+    [SerializeField] private float tiempoDeDash = 0.5f; // Duraci√≥n del dash en segundos
 
     private void Awake()
     {
         //controles = new Controles();
 
-        control.eventoMovimiento+= movimientoBase;
+        control.EventoMovimiento+= movimientoBase;
+        control.EventoDash += MovimientoDash;
+
 
     }
 
@@ -39,19 +43,21 @@ public class JugadorMovimiento : MonoBehaviour
     }
     private void Start()
     {
+
         velocidadActual = velocidad; // Inicializar la velocidad actual al valor de velocidad normal
     }
 
     private void OnDisable()
     {
         //controles.Jugador.Disable();
-        control.eventoMovimiento -= movimientoBase;
+        control.EventoMovimiento -= movimientoBase;
+        control.EventoDash -= MovimientoDash;
     }
 
     private void movimientoBase(Vector2 axis)
     {
         direccion = new Vector3(axis.x, 0, axis.y);
-        direccion = camara.transform.TransformDirection(direccion); // Convertir a espacio de la c·mara
+        direccion = camara.transform.TransformDirection(direccion); // Convertir a espacio de la c√°mara
         direccion.y = 0;// Proyectar en el plano horizontal
 
         //controlJugador.Move(direccion * velocidad * Time.deltaTime);
@@ -62,7 +68,8 @@ public class JugadorMovimiento : MonoBehaviour
     private void MovimientoDash() 
     { 
         velocidadActual = velocidadDash;
-        //Time.timeScale = 0.1f; // Asegurarse de que el tiempo no estÈ pausado
+
+        //Time.timeScale = 0.1f; // Asegurarse de que el tiempo no est√© pausado
         //Time.fixedDeltaTime = 0.02f * Time.timeScale; // Ajustar el tiempo fijo para que coincida con el tiempo escaladow
         Invoke("ReiniciarVelocidad", tiempoDeDash);
 
@@ -74,17 +81,18 @@ public class JugadorMovimiento : MonoBehaviour
         //Time.timeScale = 1f; // Reiniciar el tiempo a su valor normal
         velocidadActual = velocidad; 
     }
+
     private void FixedUpdate()
     {
        
 
-        rigidbodyJugador.linearVelocity = direccion*velocidad;
+        rigidbodyJugador.linearVelocity = direccion*velocidadActual;
 
 
         // Movimiento
         //transform.Translate(direccion * velocidad * Time.fixedDeltaTime, Space.World);
 
-        // RotaciÛn hacia direcciÛn de movimiento
+        // Rotaci√≥n hacia direcci√≥n de movimiento
         if (direccion != Vector3.zero)
         {
             Quaternion rotacionDeseada = Quaternion.LookRotation(direccion);

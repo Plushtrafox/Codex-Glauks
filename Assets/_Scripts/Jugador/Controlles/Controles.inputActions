@@ -6,7 +6,7 @@
             "id": "1cb0dd92-121d-4e7b-89ee-228ccdbe1423",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "BotonDash",
                     "type": "Button",
                     "id": "fa51c3d7-6acd-4e7d-911a-1cb5eee645e2",
                     "expectedControlType": "",
@@ -22,17 +22,26 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Interactuar",
+                    "type": "Button",
+                    "id": "5a4a35ed-4346-4182-86e8-4343e38f366a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "b051edbf-a7ea-45ae-ae36-b20e6eae5f6c",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "BotonDash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -90,6 +99,17 @@
                     "action": "Mover",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5aae0156-4462-4ed7-80d0-cf75d6a44878",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interactuar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
