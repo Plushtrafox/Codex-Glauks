@@ -5,29 +5,24 @@ using UnityEngine.InputSystem;
 
 public class JugadorMovimiento : MonoBehaviour
 {
+    [Header("REFERENCIAS")]
     [SerializeField] private ControllesSOSCript control;
-
-    public float velocidad = 5f;
-    public float velocidadRotacion = 10f;
-
-    public float velocidadDash = 30f;
-    private float velocidadActual;
-    public float tiempoDeDash = 0.15f;
-
-    //private Controles controles;
-    //private Vector2 inputMovimiento;
-
     [SerializeField] private Rigidbody rigidbodyJugador;
-    Vector3 direccion;
-
     [SerializeField] private Camera camara;
-    [SerializeField] private float velocidadActual;
-    [SerializeField] private float velocidadDash = 10f;
-    [SerializeField] private float tiempoDeDash = 0.5f; // Duración del dash en segundos
+
+    [Header("Movimiento Jugador")]
+    [SerializeField] private float velocidad = 5f;
+    [SerializeField] private float velocidadRotacion = 10f;
+    private float velocidadActual;    
+    private Vector3 direccion;
+
+    [Header("Dash Jugador")]
+    [SerializeField] private float velocidadDash = 30f;
+    [SerializeField] private float tiempoDeDash = 0.15f; // Duración del dash en segundos
 
     private void Awake()
     {
-        //controles = new Controles();
+
 
         control.EventoMovimiento+= movimientoBase;
         control.EventoDash += MovimientoDash;
@@ -35,12 +30,7 @@ public class JugadorMovimiento : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        //controles.Jugador.Enable();
-        //controles.Jugador.Mover.performed += ctx => inputMovimiento = ctx.ReadValue<Vector2>();
-        //controles.Jugador.Mover.canceled += ctx => inputMovimiento = Vector2.zero;
-    }
+
     private void Start()
     {
 
@@ -56,15 +46,17 @@ public class JugadorMovimiento : MonoBehaviour
 
     private void movimientoBase(Vector2 axis)
     {
-        direccion = new Vector3(axis.x, 0, axis.y);
+        /*direccion = new Vector3(axis.x, 0, axis.y);
         direccion = camara.transform.TransformDirection(direccion); // Convertir a espacio de la cámara
         direccion.y = 0;// Proyectar en el plano horizontal
 
-        //controlJugador.Move(direccion * velocidad * Time.deltaTime);
+        //controlJugador.Move(direccion * velocidad * Time.deltaTime);*/
 
+        direccion = camara.transform.forward * axis.y + camara.transform.right * axis.x;
 
-
+        direccion.y = 0;
     }
+
     private void MovimientoDash() 
     { 
         velocidadActual = velocidadDash;
@@ -84,10 +76,11 @@ public class JugadorMovimiento : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
+        Vector3 planeVelocity = direccion.normalized * velocidadActual;
 
-        rigidbodyJugador.linearVelocity = direccion*velocidadActual;
+        rigidbodyJugador.linearVelocity = new Vector3(planeVelocity.x, rigidbodyJugador.linearVelocity.y, planeVelocity.z);
 
+     
 
         // Movimiento
         //transform.Translate(direccion * velocidad * Time.fixedDeltaTime, Space.World);
@@ -95,7 +88,7 @@ public class JugadorMovimiento : MonoBehaviour
         // Rotación hacia dirección de movimiento
         if (direccion != Vector3.zero)
         {
-            Quaternion rotacionDeseada = Quaternion.LookRotation(direccion);
+            Quaternion rotacionDeseada = Quaternion.LookRotation(new Vector3(direccion.x, 0, direccion.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDeseada, velocidadRotacion * Time.fixedDeltaTime);
         }
     }
