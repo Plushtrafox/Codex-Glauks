@@ -20,14 +20,14 @@ public class JugadorMovimiento : MonoBehaviour
     [SerializeField] private float velocidadDash = 30f;
     [SerializeField] private float tiempoDeDash = 0.15f; // Duración del dash en segundos
 
+
+    [Header("Gravedad Jugador")]
+    [SerializeField] private float aumentoGravedad = 1f; // Aumento de la gravedad al moverse
+
     private void Awake()
     {
-
-
         control.EventoMovimiento+= movimientoBase;
         control.EventoDash += MovimientoDash;
-
-
     }
 
 
@@ -78,7 +78,7 @@ public class JugadorMovimiento : MonoBehaviour
     {
         Vector3 planeVelocity = direccion.normalized * velocidadActual;
 
-        rigidbodyJugador.linearVelocity = new Vector3(planeVelocity.x, rigidbodyJugador.linearVelocity.y, planeVelocity.z);
+        rigidbodyJugador.linearVelocity = new Vector3(planeVelocity.x, rigidbodyJugador.linearVelocity.y+aumentoGravedad, planeVelocity.z);
 
      
 
