@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
-public class enemyMove : MonoBehaviour
+public class EnemyMove : MonoBehaviour
 {
     [SerializeField] private Transform focus;
     [SerializeField] private NavMeshAgent agent;
@@ -10,17 +10,7 @@ public class enemyMove : MonoBehaviour
     [SerializeField] private float cooldown=1f; 
     [SerializeField] private int attackcount=20;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void FixedUpdate()
     {
         if (focus != null)
@@ -29,6 +19,11 @@ public class enemyMove : MonoBehaviour
             {
                 agent.isStopped = false;
                 agent.SetDestination(focus.position);
+                if (isAttacking)
+                {
+                    CancelInvoke("Attack");
+                    isAttacking = false;
+                }
             }
             else
             {
