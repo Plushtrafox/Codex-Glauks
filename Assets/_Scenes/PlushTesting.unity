@@ -73909,6 +73909,10 @@ PrefabInstance:
       propertyPath: camara
       value: 
       objectReference: {fileID: 1747370534}
+    - target: {fileID: 6754151203029816968, guid: 2ff06545ac54daa419bc52441fba1e46, type: 3}
+      propertyPath: aumentoGravedad
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8582483510582319688, guid: 2ff06545ac54daa419bc52441fba1e46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.11
