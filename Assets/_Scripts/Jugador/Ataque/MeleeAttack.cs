@@ -2,22 +2,30 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("References")]
+    [SerializeField] private ControllesSOSCript controles;
+    [SerializeField] private Animator animator;
 
+
+    [Header("Melee Attack Settings")]
     [SerializeField] private Transform AttackController;
     [SerializeField] private float attackRange = 1.0f;
     [SerializeField] private float damage;
 
-    private void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) // Left mouse button
-        {
-            Hit();
-        }
+        controles.EventoAtaque += Hit;
     }
+    private void OnDisable()
+    {
+        controles.EventoAtaque -= Hit;
+    }
+
 
     private void Hit()
     {
+        animator.CrossFade("AtaqueLigero", 0.1f);
         Collider[] hitEnemies = Physics.OverlapSphere(AttackController.position, attackRange);
         foreach (Collider enemy in hitEnemies)
         {
@@ -26,6 +34,11 @@ public class MeleeAttack : MonoBehaviour
                 enemy.GetComponent<Enemy>().TakeDamage(damage);
             }
         }
+    }
+
+    private void CambioAnimacion()
+    {
+        
     }
     private void OnDrawGizmos()
     {

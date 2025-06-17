@@ -14,6 +14,7 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     public event tipoEventoBotonSimple EventoInteractuar;
     public event tipoEventoAxis2 EventoMovimiento;
     public event tipoEventoBotonSimple EventoDash;
+    public event tipoEventoBotonSimple EventoAtaque;
 
 
     private void OnEnable()
@@ -50,6 +51,14 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
         if (context.phase == InputActionPhase.Started)
         {
             EventoInteractuar?.Invoke();
+        }
+    }
+
+    public void OnAtaque(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            EventoAtaque?.Invoke();
         }
     }
 }
