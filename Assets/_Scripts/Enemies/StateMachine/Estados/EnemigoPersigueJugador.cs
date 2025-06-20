@@ -8,6 +8,7 @@ public class EnemigoPersigueJugador : EnemigoBase
 
     public override void OnEnterState(EnemigoStateManager contexto)
     {
+        contexto.SimboloExclamacion.color = new Color(1,1,1,1);
         // Logic to execute when entering the chase state
         Debug.Log("Enemigo ha comenzado a perseguir al jugador.");
 

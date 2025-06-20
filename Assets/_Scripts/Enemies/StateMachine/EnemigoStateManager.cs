@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemigoStateManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class EnemigoStateManager : MonoBehaviour
     [SerializeField] private Transform objetivo;
     [SerializeField] private NavMeshAgent agenteMovimiento;
     [SerializeField] private HealthSO healthCharacter;
+    [SerializeField] private Image simboloExclamacion;
 
     [Header("AJUSTES DE ATAQUE CORTO ALCANCE")]
     [SerializeField] private float attackRange = 1f;
@@ -21,6 +23,7 @@ public class EnemigoStateManager : MonoBehaviour
     public Transform Objetivo { get { return objetivo; }set { objetivo = value; } }
     public NavMeshAgent AgenteMovimiento { get { return agenteMovimiento; } set { agenteMovimiento = value; } }
     public HealthSO HealthCharacter { get { return healthCharacter; } set { healthCharacter = value; } }
+    public Image SimboloExclamacion { get { return simboloExclamacion; } set { simboloExclamacion = value; } }
     public float AttackRange { get { return attackRange; } set { attackRange = value; } }
     public bool IsAttacking { get { return isAttacking; } set { isAttacking = value; } }
     public float Cooldown { get { return cooldown; } set { cooldown = value; } }
