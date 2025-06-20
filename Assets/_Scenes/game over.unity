@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 71300222}
   - component: {fileID: 71300221}
   - component: {fileID: 71300220}
+  - component: {fileID: 71300224}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -224,6 +225,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &71300224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71300219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee7f9c11d1104e4cbc531dc2de58965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &184989199
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +621,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -628,7 +641,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 968669305}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 71300224}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: reiniciar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &968669305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,13 +843,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708b142f2a5f6f349aabda88a284f9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  control: {fileID: 0}
+  control: {fileID: 11400000, guid: d8f070608a1a5e04d91ac8e448417900, type: 2}
   velocidad: 5
   velocidadRotacion: 10
   velocidadDash: 30
   tiempoDeDash: 0.15
-  rigidbodyJugador: {fileID: 0}
-  camara: {fileID: 0}
+  rigidbodyJugador: {fileID: 1129945970}
+  camara: {fileID: 1747370534}
 --- !u!1 &1249209820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1202,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &1784170508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1784170509}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1784170509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784170508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.181543, y: 2.7527952, z: -11.127866}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786522897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,3 +1436,4 @@ SceneRoots:
   - {fileID: 1129945974}
   - {fileID: 1470480404}
   - {fileID: 71300223}
+  - {fileID: 1784170509}
