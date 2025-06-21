@@ -4,6 +4,8 @@ public class GameOver : MonoBehaviour
 {
     [SerializeField] private HealthSO viditaSO;
 
+    [SerializeField] private GameObject menuDePerdida;
+
 
 
 
@@ -18,13 +20,18 @@ public class GameOver : MonoBehaviour
 
 
 private void MostrarMenuPerdida(){
-    
+        Time.timeScale = 0;
+        menuDePerdida.SetActive(true);
+        print("estamos en la funcion");
 }
-
 
     public void reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        menuDePerdida.SetActive(false);
+        Time.timeScale = 1;
+        viditaSO.health = 100;
+
     }
 
 

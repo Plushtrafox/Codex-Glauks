@@ -6,7 +6,7 @@ public class HealthSO : ScriptableObject
 {
     public delegate void tipoEventoPerdida();
     public event tipoEventoPerdida EventoPerdida;
-    private int health = 100;
+    public int health = 100;
     private int maxHealth = 100;
 
     private void OnEnable()
@@ -20,6 +20,7 @@ public class HealthSO : ScriptableObject
         if (health < 0)
         {
             EventoPerdida?.Invoke();
+            Debug.Log("estamos sin vida");
         }
        
     }
