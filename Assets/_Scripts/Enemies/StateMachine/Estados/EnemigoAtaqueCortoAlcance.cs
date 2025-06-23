@@ -2,14 +2,10 @@ using UnityEngine;
 
 public class EnemigoAtaqueCortoAlcance :EnemigoBase
 {
-    // This class represents the enemy state where it chases the player.
-    private HealthSO vidaJugador;
-    private int cantidadDamage;
 
     public override void OnEnterState(EnemigoStateManager contexto)
     {
-        vidaJugador = contexto.HealthCharacter;
-        cantidadDamage = contexto.AttackCount;
+
     }
 public override void OnUpdateState(EnemigoStateManager contexto)
 {
@@ -22,12 +18,20 @@ public override void OnUpdateState(EnemigoStateManager contexto)
                 {
                     //InvokeRepeating("Attack", 0, contexto.Cooldown);
                     contexto.IsAttacking = true;
+                    contexto.IniciarHacerDamage();
+
                 }
                 else if (contexto.IsAttacking)
                 {
                    //CancelInvoke("Attack");
                     contexto.IsAttacking = false;
+                    contexto.DetenerHacerDamage();
                 }
+            }
+            else if(Vector3.Distance(contexto.transform.position, contexto.Objetivo.position) > contexto.AttackRange)
+            {
+                // Si el enemigo se aleja del rango de ataque, vuelve al estado de persecución
+                contexto.ChangeState(contexto.EnemigoPersigueJugador);
             }
 
         }

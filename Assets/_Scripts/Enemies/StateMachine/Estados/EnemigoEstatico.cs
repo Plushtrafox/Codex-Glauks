@@ -10,7 +10,8 @@ public class EnemigoEstatico : EnemigoBase
     {
 
             contexto.AgenteMovimiento.isStopped = true;
-        
+            contexto.EstaEnVista = false; // resetea el booleano para que cuando vea al jugador otra vez muestre el UI de detectarlo
+
     }
     public override void OnUpdateState(EnemigoStateManager contexto)
     {
@@ -27,6 +28,5 @@ public class EnemigoEstatico : EnemigoBase
     public override void OnExitState(EnemigoStateManager contexto)
     {
         // Logic to execute when exiting the chase state
-        Debug.Log("Enemigo ha dejado de estar quieto");
     }
 }
