@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Rotacion : MonoBehaviour
@@ -5,6 +6,9 @@ public class Rotacion : MonoBehaviour
     [SerializeField] private Transform AttackController;
     [SerializeField] private float attackRange = 1.0f;
     [SerializeField] private float damage;
+    [SerializeField] private float lifetime = 5f; // Duración del proyectil en segundos
+    [SerializeField] private GameObject projectilePrefab; // Prefab del proyectil
+
 
     [Header("Movimiento orbital")]
     public float frecuencia = 1f;  // Vueltas por segundo
@@ -18,7 +22,6 @@ public class Rotacion : MonoBehaviour
 
     //accesors 
     public Transform EjeTransform { get { return ejeTransform; } set { ejeTransform = value; } }
-
 
     void Start()
     {
@@ -41,6 +44,8 @@ public class Rotacion : MonoBehaviour
         Vector3 orbita = Mathf.Cos(angulo) * planoX + Mathf.Sin(angulo) * planoY;
         transform.position = ejeTransform.position + orbita * amplitud;
 
+        Destroy(gameObject, lifetime); // Destruye el proyectil después de su vida útil
+        
     }
     private void OnTriggerEnter(Collider other)
     {

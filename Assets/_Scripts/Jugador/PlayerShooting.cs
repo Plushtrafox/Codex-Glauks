@@ -12,16 +12,27 @@ public class PlayerShooting : MonoBehaviour
     public GameObject Proyectile;  // Referencia de la bala
     [SerializeField] private ControllesSOSCript controlesInput; // Referencia al scriptable object de controles
     [SerializeField] private Transform ejeTransform;
-
+    [SerializeField] private bool usingAbility = false;
+    [SerializeField] private float abilityCooldown = 3; 
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(Proyectile); // Creo la bala y la ubico con una rotación
-                                   // El prefab de la bala debe tener rb
-        if (bullet.TryGetComponent<Rotacion>(out Rotacion rb)) // Si el prefab tiene un rigidbody
+        if (!usingAbility)
         {
-            rb.EjeTransform = ejeTransform; // Asigno el eje de rotación a la bala
+            GameObject bullet = Instantiate(Proyectile);// Creo la bala y la ubico con una rotación
+                                                        // El prefab de la bala debe tener rb
+
+            if (bullet.TryGetComponent<Rotacion>(out Rotacion rb)) // Si el prefab tiene un rigidbody
+            {
+                rb.EjeTransform = ejeTransform; // Asigno el eje de rotación a la bala
+            }
+
+            usingAbility = true;
+            Invoke(nameof(resetAttack), abilityCooldown);
         }
+         
+
+        
 
     }
     private void Awake()
@@ -33,5 +44,11 @@ public class PlayerShooting : MonoBehaviour
     {
         controlesInput.EventoProyectil -= Shoot; // Desasigno el evento de disparo del scriptable object
     }
+
+    private void resetAttack()
+    {
+        usingAbility = false;
+    }
+
     }
 
