@@ -4,12 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using Utility.Audio;
-using static GameManager;
+
 using AudioType = Utility.Audio.AudioType;
 
 namespace Utility.GameFlow
 {
-    public class AudioManager : MonoBehaviour
+    public class audioManager : MonoBehaviour
     {
         public AudioSource audioSource;
         //Structs
@@ -48,64 +48,64 @@ namespace Utility.GameFlow
         [SerializeField] private List<ThemeAssociationPhase> themeAssociationList = new List<ThemeAssociationPhase>();
 
         //Utility
-        private static float _masterVolume;
-        private static float _musicVolume;
-        private static float _sfxVolume;
-        private static float _ambientVolume;
+        private static float _master;
+        private static float _music;
+        private static float _sfx;
+        private static float _ambient;
 
         //Accessors
         public static float MasterVolume
         {
-            get => _masterVolume;
+            get => _master;
             private set
             {
-                if (value != _masterVolume)
+                if (value != _master)
                 {
-                    _masterVolume = Mathf.Clamp01(value);
+                    _master = Mathf.Clamp01(value);
 
-                    PlayerPrefs.SetFloat("MasterVolume", _masterVolume);
+                    PlayerPrefs.SetFloat("Master", _master);
                 }
             }
         }
 
         public static float MusicVolume
         {
-            get => _musicVolume;
+            get => _music;
             private set
             {
-                if (value != _musicVolume)
+                if (value != _music)
                 {
-                    _musicVolume = Mathf.Clamp01(value);
+                    _music = Mathf.Clamp01(value);
 
-                    PlayerPrefs.SetFloat("MusicVolume", _musicVolume);
+                    PlayerPrefs.SetFloat("Music", _music);
                 }
             }
         }
 
         public static float SfxVolume
         {
-            get => _sfxVolume;
+            get => _sfx;
             private set
             {
-                if (value != _sfxVolume)
+                if (value != _sfx)
                 {
-                    _sfxVolume = Mathf.Clamp01(value);
+                    _sfx = Mathf.Clamp01(value);
 
-                    PlayerPrefs.SetFloat("SFXVolume", _sfxVolume);
+                    PlayerPrefs.SetFloat("SFX", _sfx);
                 }
             }
         }
 
         public static float AmbientVolume
         {
-            get => _ambientVolume;
+            get => _ambient;
             private set
             {
-                if (value != _ambientVolume)
+                if (value != _ambient)
                 {
-                    _ambientVolume = Mathf.Clamp01(value);
+                    _ambient = Mathf.Clamp01(value);
 
-                    PlayerPrefs.SetFloat("AmbientVolume", _ambientVolume);
+                    PlayerPrefs.SetFloat("Ambient", _ambient);
                 }
             }
         }
@@ -212,6 +212,7 @@ namespace Utility.GameFlow
 
             PlayerPrefs.SetFloat(channelName, clampedValue);
             audioMixer.SetFloat(channelName, Mathf.Log10(clampedValue == 0 ? 0.000001f : volume) * 20);
+            
         }
 
         #endregion
@@ -233,15 +234,15 @@ namespace Utility.GameFlow
 
         private void SetUpVolumes()
         {
-            MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
-            MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-            SfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
-            AmbientVolume = PlayerPrefs.GetFloat("AmbientVolume", 0.5f);
+            MasterVolume = PlayerPrefs.GetFloat("Master", 0.5f);
+            MusicVolume = PlayerPrefs.GetFloat("Music", 0.5f);
+            SfxVolume = PlayerPrefs.GetFloat("SFX", 0.5f);
+            AmbientVolume = PlayerPrefs.GetFloat("Ambient", 0.5f);
 
-            ChangeMixerVolume("MasterVolume", MasterVolume);
-            ChangeMixerVolume("MusicVolume", MusicVolume);
-            ChangeMixerVolume("SFXVolume", SfxVolume);
-            ChangeMixerVolume("AmbientVolume", AmbientVolume);
+            ChangeMixerVolume("Master", MasterVolume);
+            ChangeMixerVolume("Music", MusicVolume);
+            ChangeMixerVolume("SFX", SfxVolume);
+            ChangeMixerVolume("Ambient", AmbientVolume);
         }
 
         #endregion

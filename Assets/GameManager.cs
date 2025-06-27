@@ -1,23 +1,24 @@
 using System;
 using UnityEngine;
-
+public enum GamePhase
+{
+    Phase0,
+    Phase1,
+    Phase2,
+    Phase3,
+}
 public class GameManager : MonoBehaviour
 {
+    
     // Singleton pattern para acceso fácil
     public static GameManager Instance { get; private set; }
     public static Action<GamePhase> OnPhaseChanged { get; internal set; }
 
     // Enum para definir las fases del juego
-    public enum GamePhase
-    {
-        Phase1,
-        Phase2,
-        Phase3,
-        
-    }
+    
 
     [SerializeField] private GamePhase currentPhase = GamePhase.Phase1;
-
+    public GamePhase CurrentPhase => currentPhase;
     private void Awake()
     {
         // Implementación del singleton
@@ -31,7 +32,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public void Start()
+    {
+        currentPhase = GamePhase.Phase1; // Inicializar la fase actual
+        EnterNewPhase(currentPhase); // Entrar en la fase inicial
+        OnPhaseChanged?.Invoke(currentPhase); // Notificar el cambio de fase inicial
+    }
     public GamePhase GetCurrentPhase()
     {
         return currentPhase;
@@ -47,40 +53,47 @@ public class GameManager : MonoBehaviour
 
         // Entrar en la nueva fase
         EnterNewPhase(newPhase);
+        OnPhaseChanged?.Invoke(newPhase);
     }
 
     private void ExitCurrentPhase()
     {
         switch (currentPhase)
         {
+            case GamePhase.Phase0:
+                // Lógica para salir de la fase 0, si es necesario
+                break;
             case GamePhase.Phase1:
-                // Lógica para salir del menú principal
+                
                 break;
             case GamePhase.Phase2:
-                // Lógica para salir de la exploración
+                
                 break;
             case GamePhase.Phase3:
                 break;
         }
     }
 
-    private void EnterNewPhase(GamePhase newPhase)
+    public void EnterNewPhase(GamePhase newPhase)
     {
-        /*switch (newPhase)
+        switch (newPhase)
         {
+            case GamePhase.Phase0:
+                currentPhase = GamePhase.Phase0;
+                break;
             case GamePhase.Phase1:
-                // Lógica para entrar al menú principal
+                currentPhase = GamePhase.Phase1;
                 break;
             case GamePhase.Phase2:
-                // Lógica para la exploración
-                SetupExplorationEnvironment();
+                currentPhase = GamePhase.Phase2;
                 break;
-            case GamePhase.Combat:
-                // Lógica para el combate
-                SetupCombatEnvironment();
+            case GamePhase.Phase3:
+                currentPhase = GamePhase.Phase3;
+
+
                 break;
                 // ... otros casos
-        }*/
+        }
 
         Debug.Log($"Entrando en fase: {newPhase}");
     }
