@@ -9,10 +9,16 @@ public class Rotacion : MonoBehaviour
     [Header("Movimiento orbital")]
     public float frecuencia = 1f;  // Vueltas por segundo
     public float amplitud = 1f;    // Radio de la órbita
-    public Transform ejeTransform; // Transform del eje de rotación
+    [SerializeField] private Transform ejeTransform; // Transform del eje de rotación
+
 
     private Vector3 planoX;
     private Vector3 planoY;
+
+
+    //accesors 
+    public Transform EjeTransform { get { return ejeTransform; } set { ejeTransform = value; } }
+
 
     void Start()
     {

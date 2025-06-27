@@ -117,6 +117,24 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ataque"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2e362c0-919a-41f2-831d-ccf0024207c4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Proyectil"",
+                    ""type"": ""Button"",
+                    ""id"": ""fabaa554-7662-407d-b937-484d4fb7b7ee"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -124,6 +142,17 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b051edbf-a7ea-45ae-ae36-b20e6eae5f6c"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BotonDash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3256fda-b80c-4532-a613-0bde1aa3cf09"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -188,12 +217,78 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0cba2724-27c5-4574-ba61-127e1da340d1"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55a4144e-c7fc-4679-9a77-106696a08b2a"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5aae0156-4462-4ed7-80d0-cf75d6a44878"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interactuar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""edd4ccd0-d832-40cb-8b6b-6ea9f9e146ce"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ataque"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14b2f7cb-227d-4f12-857b-064964c4f8cc"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ataque"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de355bc2-3ae7-46a9-a518-336575c31ba4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Proyectil"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""039cb779-2a8a-4cc0-97a6-e4a8e9a48d03"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Proyectil"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -207,6 +302,8 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         m_Jugador_BotonDash = m_Jugador.FindAction("BotonDash", throwIfNotFound: true);
         m_Jugador_Mover = m_Jugador.FindAction("Mover", throwIfNotFound: true);
         m_Jugador_Interactuar = m_Jugador.FindAction("Interactuar", throwIfNotFound: true);
+        m_Jugador_Ataque = m_Jugador.FindAction("Ataque", throwIfNotFound: true);
+        m_Jugador_Proyectil = m_Jugador.FindAction("Proyectil", throwIfNotFound: true);
     }
 
     ~@Controles()
@@ -290,6 +387,8 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     private readonly InputAction m_Jugador_BotonDash;
     private readonly InputAction m_Jugador_Mover;
     private readonly InputAction m_Jugador_Interactuar;
+    private readonly InputAction m_Jugador_Ataque;
+    private readonly InputAction m_Jugador_Proyectil;
     /// <summary>
     /// Provides access to input actions defined in input action map "Jugador".
     /// </summary>
@@ -313,6 +412,14 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Jugador/Interactuar".
         /// </summary>
         public InputAction @Interactuar => m_Wrapper.m_Jugador_Interactuar;
+        /// <summary>
+        /// Provides access to the underlying input action "Jugador/Ataque".
+        /// </summary>
+        public InputAction @Ataque => m_Wrapper.m_Jugador_Ataque;
+        /// <summary>
+        /// Provides access to the underlying input action "Jugador/Proyectil".
+        /// </summary>
+        public InputAction @Proyectil => m_Wrapper.m_Jugador_Proyectil;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -348,6 +455,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Interactuar.started += instance.OnInteractuar;
             @Interactuar.performed += instance.OnInteractuar;
             @Interactuar.canceled += instance.OnInteractuar;
+            @Ataque.started += instance.OnAtaque;
+            @Ataque.performed += instance.OnAtaque;
+            @Ataque.canceled += instance.OnAtaque;
+            @Proyectil.started += instance.OnProyectil;
+            @Proyectil.performed += instance.OnProyectil;
+            @Proyectil.canceled += instance.OnProyectil;
         }
 
         /// <summary>
@@ -368,6 +481,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Interactuar.started -= instance.OnInteractuar;
             @Interactuar.performed -= instance.OnInteractuar;
             @Interactuar.canceled -= instance.OnInteractuar;
+            @Ataque.started -= instance.OnAtaque;
+            @Ataque.performed -= instance.OnAtaque;
+            @Ataque.canceled -= instance.OnAtaque;
+            @Proyectil.started -= instance.OnProyectil;
+            @Proyectil.performed -= instance.OnProyectil;
+            @Proyectil.canceled -= instance.OnProyectil;
         }
 
         /// <summary>
@@ -429,5 +548,19 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteractuar(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ataque" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAtaque(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Proyectil" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnProyectil(InputAction.CallbackContext context);
     }
 }
