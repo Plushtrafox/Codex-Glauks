@@ -33,8 +33,6 @@ public class EnemigoPersigueJugador : EnemigoBase
             else if (contexto.DistanciaActual <= contexto.AttackRange)
             {
                 contexto.AgenteMovimiento.isStopped = true;
-
-
                 contexto.ChangeState(contexto.EnemigoAtaqueCortoAlcance);
             }
             else
@@ -48,6 +46,5 @@ public class EnemigoPersigueJugador : EnemigoBase
     public override void OnExitState(EnemigoStateManager contexto)
     {
         // Logic to execute when exiting the chase state
-        Debug.Log("Enemigo ha dejado de perseguir al jugador.");
     }
 }

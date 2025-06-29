@@ -18,18 +18,15 @@ public override void OnUpdateState(EnemigoStateManager contexto)
                 {
                     //InvokeRepeating("Attack", 0, contexto.Cooldown);
                     contexto.IsAttacking = true;
-                    contexto.IniciarHacerDamage();
+                    contexto.Animator.CrossFade("AtaqueCortoAlcance", 0.5f);
 
                 }
-                else if (contexto.IsAttacking)
-                {
-                   //CancelInvoke("Attack");
-                    contexto.IsAttacking = false;
-                    contexto.DetenerHacerDamage();
-                }
+
             }
             else if(Vector3.Distance(contexto.transform.position, contexto.Objetivo.position) > contexto.AttackRange)
             {
+                contexto.IsAttacking = false;
+                contexto.Animator.CrossFade("Caminando", 0.5f);
                 // Si el enemigo se aleja del rango de ataque, vuelve al estado de persecución
                 contexto.ChangeState(contexto.EnemigoPersigueJugador);
             }

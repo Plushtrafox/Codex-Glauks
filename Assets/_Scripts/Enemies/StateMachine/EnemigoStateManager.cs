@@ -10,6 +10,7 @@ public class EnemigoStateManager : MonoBehaviour
     [SerializeField] private NavMeshAgent agenteMovimiento;
     [SerializeField] private HealthSO healthCharacter;
     [SerializeField] private Image simboloExclamacion;
+    [SerializeField] private Animator animator; // Referencia al Animator del enemigo para controlar las animaciones
 
     [Header("AJUSTES DE ATAQUE CORTO ALCANCE")]
     [SerializeField] private float attackRange = 2f;
@@ -35,9 +36,10 @@ public class EnemigoStateManager : MonoBehaviour
     public float RangoDeVision { get { return rangoDeVision; } set { rangoDeVision = value; } }
     public float DistanciaActual { get { return distanciaActual; } set { distanciaActual = value; } }
     public bool EstaEnVista { get { return estaEnVista; } set { estaEnVista = value; } }
+    public Animator Animator { get { return animator; } set { animator = value; } }
 
 
-    
+
     private EnemigoEstatico enemigoEstatico = new EnemigoEstatico();
     private EnemigoPersigueJugador enemigoPersigueJugador = new EnemigoPersigueJugador();
     private EnemigoDispara enemigoDispara = new EnemigoDispara();
