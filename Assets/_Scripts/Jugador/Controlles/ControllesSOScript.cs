@@ -72,7 +72,7 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
         }
 
     } 
-    public void OnLongDistance(InputAction.CallbackContext context)
+    public void OnLargaDistancia(InputAction.CallbackContext context)
     {
         // Implementar lógica para ataque a distancia si es necesario
         if (context.phase == InputActionPhase.Started)

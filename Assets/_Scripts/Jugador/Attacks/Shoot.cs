@@ -8,7 +8,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] public float bulletSpeed = 20f; // Velocidad de la bala
     [SerializeField] public float shotRate = 0.5f; // Tiempo entre disparos
 
-    private float nextShotTime = 0f; // Tiempo del próximo disparo
+   // private float nextShotTime = 0f; // Tiempo del próximo disparo
     // Update is called once per frame
 
     void Update()
