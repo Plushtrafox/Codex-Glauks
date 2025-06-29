@@ -40,6 +40,7 @@ public class JugadorMovimiento : MonoBehaviour
     {
 
         velocidadActual = velocidad; // Inicializar la velocidad actual al valor de velocidad normal
+        //animatorJugador.Play("");
     }
 
     private void OnDisable()
