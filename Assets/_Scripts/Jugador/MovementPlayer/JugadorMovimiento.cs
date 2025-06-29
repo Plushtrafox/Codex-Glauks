@@ -13,6 +13,7 @@ public class JugadorMovimiento : MonoBehaviour
     [SerializeField] private Rigidbody rigidbodyJugador;
     [SerializeField] private Camera camara;
     [SerializeField] private audioManager audioManager; // Asegúrate de tener un AudioManager en tu escena
+    [SerializeField] private Animator animatorJugador; // Referencia al Animator del jugador
 
     [Header("Movimiento Jugador")]
     [SerializeField] private float velocidad = 5f;
