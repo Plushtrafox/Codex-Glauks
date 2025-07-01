@@ -2,13 +2,18 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility.Audio;
+using Utility.GameFlow;
 
 public class JugadorMovimiento : MonoBehaviour
 {
+   
     [Header("REFERENCIAS")]
     [SerializeField] private ControllesSOSCript control;
     [SerializeField] private Rigidbody rigidbodyJugador;
     [SerializeField] private Camera camara;
+    [SerializeField] private audioManager audioManager; // Asegúrate de tener un AudioManager en tu escena
+    [SerializeField] private Animator animatorJugador; // Referencia al Animator del jugador
 
     [Header("Movimiento Jugador")]
     [SerializeField] private float velocidad = 5f;
@@ -35,6 +40,7 @@ public class JugadorMovimiento : MonoBehaviour
     {
 
         velocidadActual = velocidad; // Inicializar la velocidad actual al valor de velocidad normal
+        //animatorJugador.Play("");
     }
 
     private void OnDisable()
@@ -64,7 +70,8 @@ public class JugadorMovimiento : MonoBehaviour
         //Time.timeScale = 0.1f; // Asegurarse de que el tiempo no esté pausado
         //Time.fixedDeltaTime = 0.02f * Time.timeScale; // Ajustar el tiempo fijo para que coincida con el tiempo escaladow
         Invoke("ReiniciarVelocidad", tiempoDeDash);
-
+        ClipData clipData = audioManager.GetClipData("Dash"); // Obtener datos del clip de sonido de dash
+        audioManager.PlayClipOneShot(clipData); // Reproducir sonido de dash
     }
 
     private void ReiniciarVelocidad() 
