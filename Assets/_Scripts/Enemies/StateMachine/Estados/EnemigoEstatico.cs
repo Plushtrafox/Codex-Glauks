@@ -8,9 +8,11 @@ public class EnemigoEstatico : EnemigoBase
 
     public override void OnEnterState(EnemigoStateManager contexto)
     {
-
-            contexto.AgenteMovimiento.isStopped = true;
         
+        contexto.Animator.CrossFade("Base", 0.5f); // Cambia la animación a Idle
+        contexto.AgenteMovimiento.isStopped = true;
+            contexto.EstaEnVista = false; // resetea el booleano para que cuando vea al jugador otra vez muestre el UI de detectarlo
+
     }
     public override void OnUpdateState(EnemigoStateManager contexto)
     {
@@ -19,6 +21,7 @@ public class EnemigoEstatico : EnemigoBase
             contexto.DistanciaActual = Vector3.Distance(contexto.transform.position, contexto.Objetivo.position);
             if (contexto.DistanciaActual <= contexto.RangoDeVision)
             {
+                contexto.Animator.CrossFade("Caminando", 0.5f);
                 contexto.ChangeState(contexto.EnemigoPersigueJugador);
             }
         }
@@ -27,6 +30,5 @@ public class EnemigoEstatico : EnemigoBase
     public override void OnExitState(EnemigoStateManager contexto)
     {
         // Logic to execute when exiting the chase state
-        Debug.Log("Enemigo ha dejado de estar quieto");
     }
 }

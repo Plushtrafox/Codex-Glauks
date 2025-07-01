@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -15,16 +16,18 @@ public class CameraManager : MonoBehaviour
 
     [ SerializeField ] private MeleeAttack meleeAttack;
 
+    public Action EventoShakeCamaraGolpe;
+
 
 
 
     private void Awake()
     {
-        meleeAttack.EventoShakeCamaraGolpe += ShakeCameraGolpe;
+        EventoShakeCamaraGolpe += ShakeCameraGolpe;
     }
     private void OnDisable()
     {
-        meleeAttack.EventoShakeCamaraGolpe -= ShakeCameraGolpe;
+        EventoShakeCamaraGolpe -= ShakeCameraGolpe;
     }
 
 
