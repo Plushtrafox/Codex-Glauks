@@ -135,6 +135,8 @@ MonoBehaviour:
   AttackController: {fileID: 2479614984884505172}
   attackRange: 0.7
   damage: 5
+  lifetime: 3
+  projectilePrefab: {fileID: 8151951390626915735}
   frecuencia: 2
   amplitud: 5
   ejeTransform: {fileID: 0}

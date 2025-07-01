@@ -40330,6 +40330,8 @@ MonoBehaviour:
   Proyectile: {fileID: 8151951390626915735, guid: 9e97e042d7520f840af9ec923532a2db, type: 3}
   controlesInput: {fileID: 11400000, guid: d8f070608a1a5e04d91ac8e448417900, type: 2}
   ejeTransform: {fileID: 900759339}
+  usingAbility: 0
+  abilityCooldown: 6
 --- !u!43 &1180946816
 Mesh:
   m_ObjectHideFlags: 0
@@ -74038,6 +74040,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 85967129825843858, guid: 2ff06545ac54daa419bc52441fba1e46, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cd685dc9539dcc49a2c297c529e609a, type: 2}
     - target: {fileID: 2649063395035301593, guid: 2ff06545ac54daa419bc52441fba1e46, type: 3}
       propertyPath: m_Name
       value: SphereDamage

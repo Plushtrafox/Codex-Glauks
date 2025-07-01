@@ -71,5 +71,13 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
             EventoProyectil?.Invoke();
         }
 
+    } 
+    public void OnLargaDistancia(InputAction.CallbackContext context)
+    {
+        // Implementar lógica para ataque a distancia si es necesario
+        if (context.phase == InputActionPhase.Started)
+        {
+
+        }
     }
 }
