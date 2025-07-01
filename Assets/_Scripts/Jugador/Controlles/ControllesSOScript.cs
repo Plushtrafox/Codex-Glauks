@@ -15,6 +15,7 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     public event tipoEventoAxis2 EventoMovimiento;
     public event tipoEventoBotonSimple EventoDash;
     public event tipoEventoBotonSimple EventoAtaque;
+    public event tipoEventoBotonSimple EventoProyectil;
 
 
     private void OnEnable()
@@ -59,6 +60,24 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
         if (context.phase == InputActionPhase.Started)
         {
             EventoAtaque?.Invoke();
+        }
+    }
+
+    public void OnProyectil(InputAction.CallbackContext context)
+    {
+
+        if (context.phase == InputActionPhase.Started)
+        {
+            EventoProyectil?.Invoke();
+        }
+
+    } 
+    public void OnLargaDistancia(InputAction.CallbackContext context)
+    {
+        // Implementar lógica para ataque a distancia si es necesario
+        if (context.phase == InputActionPhase.Started)
+        {
+
         }
     }
 }
