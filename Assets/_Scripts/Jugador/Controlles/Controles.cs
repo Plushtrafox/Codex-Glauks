@@ -126,24 +126,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Proyectil"",
-                    ""type"": ""Button"",
-                    ""id"": ""fabaa554-7662-407d-b937-484d4fb7b7ee"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""LargaDistancia"",
-                    ""type"": ""Button"",
-                    ""id"": ""26da0530-3e0f-486b-8493-a7899c92929b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -278,50 +260,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""action"": ""Ataque"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""de355bc2-3ae7-46a9-a518-336575c31ba4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Proyectil"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""039cb779-2a8a-4cc0-97a6-e4a8e9a48d03"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Proyectil"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c942be9-4360-414c-b139-abc8237cf0b7"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LargaDistancia"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""85237895-e6a2-4252-a7fd-33bb1eafe23f"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LargaDistancia"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -334,8 +272,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         m_Jugador_Mover = m_Jugador.FindAction("Mover", throwIfNotFound: true);
         m_Jugador_Interactuar = m_Jugador.FindAction("Interactuar", throwIfNotFound: true);
         m_Jugador_Ataque = m_Jugador.FindAction("Ataque", throwIfNotFound: true);
-        m_Jugador_Proyectil = m_Jugador.FindAction("Proyectil", throwIfNotFound: true);
-        m_Jugador_LargaDistancia = m_Jugador.FindAction("LargaDistancia", throwIfNotFound: true);
     }
 
     ~@Controles()
@@ -420,8 +356,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     private readonly InputAction m_Jugador_Mover;
     private readonly InputAction m_Jugador_Interactuar;
     private readonly InputAction m_Jugador_Ataque;
-    private readonly InputAction m_Jugador_Proyectil;
-    private readonly InputAction m_Jugador_LargaDistancia;
     /// <summary>
     /// Provides access to input actions defined in input action map "Jugador".
     /// </summary>
@@ -449,14 +383,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Jugador/Ataque".
         /// </summary>
         public InputAction @Ataque => m_Wrapper.m_Jugador_Ataque;
-        /// <summary>
-        /// Provides access to the underlying input action "Jugador/Proyectil".
-        /// </summary>
-        public InputAction @Proyectil => m_Wrapper.m_Jugador_Proyectil;
-        /// <summary>
-        /// Provides access to the underlying input action "Jugador/LargaDistancia".
-        /// </summary>
-        public InputAction @LargaDistancia => m_Wrapper.m_Jugador_LargaDistancia;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -495,12 +421,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Ataque.started += instance.OnAtaque;
             @Ataque.performed += instance.OnAtaque;
             @Ataque.canceled += instance.OnAtaque;
-            @Proyectil.started += instance.OnProyectil;
-            @Proyectil.performed += instance.OnProyectil;
-            @Proyectil.canceled += instance.OnProyectil;
-            @LargaDistancia.started += instance.OnLargaDistancia;
-            @LargaDistancia.performed += instance.OnLargaDistancia;
-            @LargaDistancia.canceled += instance.OnLargaDistancia;
         }
 
         /// <summary>
@@ -524,12 +444,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Ataque.started -= instance.OnAtaque;
             @Ataque.performed -= instance.OnAtaque;
             @Ataque.canceled -= instance.OnAtaque;
-            @Proyectil.started -= instance.OnProyectil;
-            @Proyectil.performed -= instance.OnProyectil;
-            @Proyectil.canceled -= instance.OnProyectil;
-            @LargaDistancia.started -= instance.OnLargaDistancia;
-            @LargaDistancia.performed -= instance.OnLargaDistancia;
-            @LargaDistancia.canceled -= instance.OnLargaDistancia;
         }
 
         /// <summary>
@@ -598,19 +512,5 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAtaque(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Proyectil" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnProyectil(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "LargaDistancia" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLargaDistancia(InputAction.CallbackContext context);
     }
 }

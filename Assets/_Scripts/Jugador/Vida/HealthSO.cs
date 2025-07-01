@@ -4,8 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HealthSO", menuName = "ScriptableObjects/HealthSO", order = 1)]
 public class HealthSO : ScriptableObject
 {
-    public delegate void tipoEventoPerdida();
-    public event tipoEventoPerdida EventoPerdida;
     private int health = 100;
     private int maxHealth = 100;
 
@@ -19,7 +17,7 @@ public class HealthSO : ScriptableObject
         
         if (health < 0)
         {
-            EventoPerdida?.Invoke();
+            Debug.Log("mamavuevo");
         }
        
     }
