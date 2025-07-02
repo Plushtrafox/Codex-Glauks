@@ -3277,6 +3277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Run With Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 6548719371826082189, guid: a856d01136735b14e9384a42df901cf6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 67532ab2f86009d4da41b3d276b3fc5f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4632,11 +4636,13 @@ MonoBehaviour:
   agenteMovimiento: {fileID: 1196846217}
   healthCharacter: {fileID: 11400000, guid: f5f2be75bed1edd42b64f0a017b4ee06, type: 2}
   simboloExclamacion: {fileID: 770189512}
+  animator: {fileID: 0}
   attackRange: 1
   cooldown: 1
   attackcount: 20
   rangoDeVision: 10
   distanciaActual: 0
+  estaEnVista: 0
 --- !u!1 &1308516172
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,12 +31,12 @@ public class MeleeAttack : MonoBehaviour
 
     private void Awake()
     {
-        controles.EventoAtaque += Hit;
+        controles.EventoAtaqueEmpieza += Hit;
         scriptPlumaAtaque.EventoReactivarAtaque += ReactivarBoolAtaque; // Suscribirse al evento de reactivación del ataque
     }
     private void OnDisable()
     {
-        controles.EventoAtaque -= Hit;
+        controles.EventoAtaqueEmpieza -= Hit;
         scriptPlumaAtaque.EventoReactivarAtaque += ReactivarBoolAtaque; // Suscribirse al evento de reactivación del ataque
 
     }
