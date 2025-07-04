@@ -16,7 +16,7 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     public event tipoEventoBotonSimple EventoDash;
     public event tipoEventoBotonSimple EventoAtaqueEmpieza;
     public event tipoEventoBotonSimple EventoAtaqueTermina;
-    public event tipoEventoBotonSimple EventoProyectil;
+    public event tipoEventoBotonSimple EventoPoder;
 
 
     private void OnEnable()
@@ -73,7 +73,7 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
 
         if (context.phase == InputActionPhase.Started)
         {
-            EventoProyectil?.Invoke();
+            EventoPoder?.Invoke();
         }
 
     } 

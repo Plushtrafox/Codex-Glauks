@@ -5267,6 +5267,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 564849995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &680879362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4833941899312755565, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
+  m_PrefabInstance: {fileID: 1946428460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &686915561
 GameObject:
   m_ObjectHideFlags: 0
@@ -51312,7 +51317,10 @@ PrefabInstance:
     - {fileID: 6449476851162020147, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
     - {fileID: 3852395695165060843, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4833941899312755565, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2070329335}
   m_SourcePrefab: {fileID: 100100000, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
 --- !u!4 &1946428462 stripped
 Transform:
@@ -51620,12 +51628,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5607566202857065387, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
   m_PrefabInstance: {fileID: 1946428460}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 680879362}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f0a5eb05d7fcb94d98b6435d7f17675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2070329335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680879362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937735faf6d52564380cd3ac0300b66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Proyectile: {fileID: 8151951390626915735, guid: 9e97e042d7520f840af9ec923532a2db, type: 3}
+  controlesInput: {fileID: 11400000, guid: d8f070608a1a5e04d91ac8e448417900, type: 2}
+  ejeTransform: {fileID: 1946428462}
+  usingAbility: 0
+  abilityCooldown: 3
 --- !u!4 &2077550392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2220691377262093910, guid: be49b42a5ceed6544900ae367b4acacd, type: 3}

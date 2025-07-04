@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Rotacion : MonoBehaviour
+public class Proyectile : MonoBehaviour
 {
     [SerializeField] private Transform AttackController;
     [SerializeField] private float attackRange = 1.0f;

@@ -22,7 +22,7 @@ public class PlayerShooting : MonoBehaviour
             GameObject bullet = Instantiate(Proyectile);// Creo la bala y la ubico con una rotación
                                                         // El prefab de la bala debe tener rb
 
-            if (bullet.TryGetComponent<Rotacion>(out Rotacion rb)) // Si el prefab tiene un rigidbody
+            if (bullet.TryGetComponent<Proyectile>(out Proyectile rb)) // Si el prefab tiene un rigidbody
             {
                 rb.EjeTransform = ejeTransform; // Asigno el eje de rotación a la bala
             }
@@ -37,12 +37,12 @@ public class PlayerShooting : MonoBehaviour
     }
     private void Awake()
     {
-        controlesInput.EventoProyectil += Shoot; // Asigno el evento de disparo del scriptable object
+        controlesInput.EventoPoder += Shoot; // Asigno el evento de disparo del scriptable object
         
     }
     private void OnDisable()
     {
-        controlesInput.EventoProyectil -= Shoot; // Desasigno el evento de disparo del scriptable object
+        controlesInput.EventoPoder -= Shoot; // Desasigno el evento de disparo del scriptable object
     }
 
     private void resetAttack()

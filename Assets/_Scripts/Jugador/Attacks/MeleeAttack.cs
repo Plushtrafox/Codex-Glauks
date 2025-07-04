@@ -14,7 +14,6 @@ public class MeleeAttack : MonoBehaviour
 
 
     [Header("Melee Attack Settings")]
-    [SerializeField] private Transform AttackController;
     [SerializeField] private float damage;
     //[SerializeField] private float tiempoDeAtaque = 0.2f; // Tiempo total del ataque
     //private float tiempoActual = 0f; // Tiempo actual del ataque, se incrementará en cada frame durante el ataque
