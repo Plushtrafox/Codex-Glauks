@@ -20,8 +20,9 @@ public class LongShoot : MonoBehaviour
             bulletPrefabInstanciate = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity) as Rigidbody; // Crea el proyectil
 
             bulletPrefabInstanciate.AddForce(spawnPoint.forward *100* speed); // Aplica fuerza al proyectil
+            Destroy(bulletPrefabInstanciate, lifetime); // Llama a la función para destruir el proyectil después de un tiempo
         }
-        Destroy(bulletPrefab, lifetime);
+
     }
 }
 
