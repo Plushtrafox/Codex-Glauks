@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Shoot : MonoBehaviour
+public class LongShoot : MonoBehaviour
 {
     [SerializeField] private ControllesSOSCript controles;
     [SerializeField] private Rigidbody bulletPrefab;
     [SerializeField] private Transform spawnPoint; // Punto de origen del proyectil
     [SerializeField] private float speed = 20f; // Velocidad del proyectil
     [SerializeField] private float shootTime = 0.5f; // Tiempo entre disparos
+    [SerializeField] private float lifetime = 5f; // Duración del proyectil en segundos
     private float shootStart; // Referencia al script de controles
 
     private void Update()
@@ -20,6 +21,7 @@ public class Shoot : MonoBehaviour
 
             bulletPrefabInstanciate.AddForce(spawnPoint.forward *100* speed); // Aplica fuerza al proyectil
         }
+        Destroy(bulletPrefab, lifetime);
     }
 }
 
