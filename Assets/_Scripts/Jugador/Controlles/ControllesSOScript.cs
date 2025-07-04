@@ -14,7 +14,8 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     public event tipoEventoBotonSimple EventoInteractuar;
     public event tipoEventoAxis2 EventoMovimiento;
     public event tipoEventoBotonSimple EventoDash;
-    public event tipoEventoBotonSimple EventoAtaque;
+    public event tipoEventoBotonSimple EventoAtaqueEmpieza;
+    public event tipoEventoBotonSimple EventoAtaqueTermina;
     public event tipoEventoBotonSimple EventoProyectil;
 
 
@@ -59,7 +60,11 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     {
         if (context.phase == InputActionPhase.Started)
         {
-            EventoAtaque?.Invoke();
+            EventoAtaqueEmpieza?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            EventoAtaqueTermina?.Invoke();
         }
     }
 
