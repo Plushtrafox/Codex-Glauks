@@ -95,6 +95,5 @@ public class GameManager : MonoBehaviour
                 // ... otros casos
         }
 
-        Debug.Log($"Entrando en fase: {newPhase}");
     }
 }

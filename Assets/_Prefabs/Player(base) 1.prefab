@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 5607566202857065387}
   m_Layer: 0
   m_Name: Player(base) 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4833941899312755565}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.005814344, z: -0, w: 0.9999831}
+  m_LocalRotation: {x: 0, y: -0.005811942, z: 0, w: 0.99998313}
   m_LocalPosition: {x: 30.35, y: 7.425, z: -4.4749985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -312,6 +312,8 @@ MonoBehaviour:
   control: {fileID: 11400000, guid: d8f070608a1a5e04d91ac8e448417900, type: 2}
   rigidbodyJugador: {fileID: 8478695907188937152}
   camara: {fileID: 0}
+  audioManager: {fileID: 0}
+  animatorJugador: {fileID: 6573919767297315355}
   velocidad: 15
   velocidadRotacion: 10
   velocidadDash: 40
