@@ -83,7 +83,6 @@ public class EnemigoStateManager : MonoBehaviour
         //cambiamos al nuevo estado
         currentState = newState;
         currentState.OnEnterState(this);
-        print("Cambiando estado a: " + currentState.GetType().Name);
     }
 
 
