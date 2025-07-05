@@ -128,7 +128,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Proyectil"",
+                    ""name"": ""LargaDistancia"",
                     ""type"": ""Button"",
                     ""id"": ""fabaa554-7662-407d-b937-484d4fb7b7ee"",
                     ""expectedControlType"": """",
@@ -137,7 +137,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LargaDistancia"",
+                    ""name"": ""Giratorio"",
                     ""type"": ""Button"",
                     ""id"": ""26da0530-3e0f-486b-8493-a7899c92929b"",
                     ""expectedControlType"": """",
@@ -286,7 +286,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Proyectil"",
+                    ""action"": ""LargaDistancia"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -297,7 +297,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Proyectil"",
+                    ""action"": ""LargaDistancia"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -308,7 +308,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LargaDistancia"",
+                    ""action"": ""Giratorio"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -319,7 +319,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LargaDistancia"",
+                    ""action"": ""Giratorio"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -334,8 +334,8 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         m_Jugador_Mover = m_Jugador.FindAction("Mover", throwIfNotFound: true);
         m_Jugador_Interactuar = m_Jugador.FindAction("Interactuar", throwIfNotFound: true);
         m_Jugador_Ataque = m_Jugador.FindAction("Ataque", throwIfNotFound: true);
-        m_Jugador_Proyectil = m_Jugador.FindAction("Proyectil", throwIfNotFound: true);
         m_Jugador_LargaDistancia = m_Jugador.FindAction("LargaDistancia", throwIfNotFound: true);
+        m_Jugador_Giratorio = m_Jugador.FindAction("Giratorio", throwIfNotFound: true);
     }
 
     ~@Controles()
@@ -420,8 +420,8 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     private readonly InputAction m_Jugador_Mover;
     private readonly InputAction m_Jugador_Interactuar;
     private readonly InputAction m_Jugador_Ataque;
-    private readonly InputAction m_Jugador_Proyectil;
     private readonly InputAction m_Jugador_LargaDistancia;
+    private readonly InputAction m_Jugador_Giratorio;
     /// <summary>
     /// Provides access to input actions defined in input action map "Jugador".
     /// </summary>
@@ -450,13 +450,13 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Ataque => m_Wrapper.m_Jugador_Ataque;
         /// <summary>
-        /// Provides access to the underlying input action "Jugador/Proyectil".
-        /// </summary>
-        public InputAction @Proyectil => m_Wrapper.m_Jugador_Proyectil;
-        /// <summary>
         /// Provides access to the underlying input action "Jugador/LargaDistancia".
         /// </summary>
         public InputAction @LargaDistancia => m_Wrapper.m_Jugador_LargaDistancia;
+        /// <summary>
+        /// Provides access to the underlying input action "Jugador/Giratorio".
+        /// </summary>
+        public InputAction @Giratorio => m_Wrapper.m_Jugador_Giratorio;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -495,12 +495,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Ataque.started += instance.OnAtaque;
             @Ataque.performed += instance.OnAtaque;
             @Ataque.canceled += instance.OnAtaque;
-            @Proyectil.started += instance.OnProyectil;
-            @Proyectil.performed += instance.OnProyectil;
-            @Proyectil.canceled += instance.OnProyectil;
             @LargaDistancia.started += instance.OnLargaDistancia;
             @LargaDistancia.performed += instance.OnLargaDistancia;
             @LargaDistancia.canceled += instance.OnLargaDistancia;
+            @Giratorio.started += instance.OnGiratorio;
+            @Giratorio.performed += instance.OnGiratorio;
+            @Giratorio.canceled += instance.OnGiratorio;
         }
 
         /// <summary>
@@ -524,12 +524,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Ataque.started -= instance.OnAtaque;
             @Ataque.performed -= instance.OnAtaque;
             @Ataque.canceled -= instance.OnAtaque;
-            @Proyectil.started -= instance.OnProyectil;
-            @Proyectil.performed -= instance.OnProyectil;
-            @Proyectil.canceled -= instance.OnProyectil;
             @LargaDistancia.started -= instance.OnLargaDistancia;
             @LargaDistancia.performed -= instance.OnLargaDistancia;
             @LargaDistancia.canceled -= instance.OnLargaDistancia;
+            @Giratorio.started -= instance.OnGiratorio;
+            @Giratorio.performed -= instance.OnGiratorio;
+            @Giratorio.canceled -= instance.OnGiratorio;
         }
 
         /// <summary>
@@ -599,18 +599,18 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAtaque(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Proyectil" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnProyectil(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "LargaDistancia" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLargaDistancia(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Giratorio" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGiratorio(InputAction.CallbackContext context);
     }
 }

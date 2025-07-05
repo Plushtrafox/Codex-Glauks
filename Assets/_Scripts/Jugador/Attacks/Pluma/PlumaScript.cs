@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlumaScript : MonoBehaviour
@@ -7,11 +8,15 @@ public class PlumaScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemigo))
+        if (other !=null)
         {
-            enemigo.TakeDamage(damage);
+            if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemigo))
+            {
+                enemigo.TakeDamage(damage);
 
-            cameraManager.EventoShakeCamaraGolpe?.Invoke(); // Invoca el evento de sacudida de cámara al golpear un enemigo
+                cameraManager.EventoShakeCamaraGolpe?.Invoke(); // Invoca el evento de sacudida de cámara al golpear un enemigo
+            }
+
         }
     }
 }
