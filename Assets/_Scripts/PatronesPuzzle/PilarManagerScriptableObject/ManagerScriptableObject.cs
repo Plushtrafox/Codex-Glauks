@@ -16,7 +16,6 @@ public class ManagerScriptableObject : ScriptableObject
         if (!PilarScriptableObject.Contains(false))
         {
             EventoPilar?.Invoke();
-            Debug.Log("Todos los pilares han sido activados correctamente.");
         }
     }
    public void AddPilar()

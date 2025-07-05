@@ -6,7 +6,7 @@ public class HealthSO : ScriptableObject
 {
     public delegate void tipoEventoPerdida();
     public event tipoEventoPerdida EventoPerdida;
-    private int health = 100;
+    [SerializeField]private int health = 100;
     private int maxHealth = 100;
 
     private void OnEnable()

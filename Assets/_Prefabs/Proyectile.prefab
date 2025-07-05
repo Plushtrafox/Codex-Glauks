@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 5779702799551091472}
   - component: {fileID: 1092910846390726128}
   - component: {fileID: 3389657574317242168}
-  - component: {fileID: 1329499769530715820}
   - component: {fileID: 8069872081854711511}
+  - component: {fileID: 7564069965480223369}
   m_Layer: 0
   m_Name: Proyectile
   m_TagString: Untagged
@@ -120,26 +120,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1329499769530715820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8151951390626915735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38263a43f49794844b7245f416379148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackController: {fileID: 2479614984884505172}
-  attackRange: 0.7
-  damage: 5
-  lifetime: 3
-  projectilePrefab: {fileID: 8151951390626915735}
-  frecuencia: 2
-  amplitud: 5
-  ejeTransform: {fileID: 0}
 --- !u!135 &8069872081854711511
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -161,3 +141,23 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7564069965480223369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8151951390626915735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38263a43f49794844b7245f416379148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackController: {fileID: 2479614984884505172}
+  attackRange: 1
+  damage: 2
+  lifetime: 3
+  projectilePrefab: {fileID: 8151951390626915735}
+  frecuencia: 2
+  amplitud: 3
+  ejeTransform: {fileID: 0}

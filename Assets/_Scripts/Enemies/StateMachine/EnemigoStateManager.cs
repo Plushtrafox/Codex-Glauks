@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -9,18 +10,22 @@ public class EnemigoStateManager : MonoBehaviour
     [SerializeField] private NavMeshAgent agenteMovimiento;
     [SerializeField] private HealthSO healthCharacter;
     [SerializeField] private Image simboloExclamacion;
+    [SerializeField] private Animator animator; // Referencia al Animator del enemigo para controlar las animaciones
 
     [Header("AJUSTES DE ATAQUE CORTO ALCANCE")]
-    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float attackRange = 2f;
     private bool isAttacking = false;
     [SerializeField] private float cooldown = 1f;
     [SerializeField] private int attackcount = 20;
 
-    [SerializeField]private float rangoDeVision = 10f;
-    [SerializeField]private float distanciaActual; 
+
+    [Header("AJUSTES DE VISION Y DISTANCIA")]
+    [SerializeField] private float rangoDeVision = 10f;
+    [SerializeField] private float distanciaActual;
+    [SerializeField] private bool estaEnVista = false; // Indica si el enemigo ha visto al jugador o no, se usa para mostrar el icono de exclamacion cuando lo ve
 
     //accesores
-    public Transform Objetivo { get { return objetivo; }set { objetivo = value; } }
+    public Transform Objetivo { get { return objetivo; } set { objetivo = value; } }
     public NavMeshAgent AgenteMovimiento { get { return agenteMovimiento; } set { agenteMovimiento = value; } }
     public HealthSO HealthCharacter { get { return healthCharacter; } set { healthCharacter = value; } }
     public Image SimboloExclamacion { get { return simboloExclamacion; } set { simboloExclamacion = value; } }
@@ -30,10 +35,11 @@ public class EnemigoStateManager : MonoBehaviour
     public int AttackCount { get { return attackcount; } set { attackcount = value; } }
     public float RangoDeVision { get { return rangoDeVision; } set { rangoDeVision = value; } }
     public float DistanciaActual { get { return distanciaActual; } set { distanciaActual = value; } }
+    public bool EstaEnVista { get { return estaEnVista; } set { estaEnVista = value; } }
+    public Animator Animator { get { return animator; } set { animator = value; } }
 
 
 
-    //estados del enemigo
     private EnemigoEstatico enemigoEstatico = new EnemigoEstatico();
     private EnemigoPersigueJugador enemigoPersigueJugador = new EnemigoPersigueJugador();
     private EnemigoDispara enemigoDispara = new EnemigoDispara();
@@ -79,6 +85,38 @@ public class EnemigoStateManager : MonoBehaviour
         currentState.OnEnterState(this);
     }
 
+
+
+    #region ataque corto alcance
+    public void IniciarHacerDamage()
+    {
+        InvokeRepeating("HacerDamage", cooldown, cooldown);
+    }
+    private void HacerDamage()
+    {
+        healthCharacter.Damage(attackcount);
+    }
+    public void DetenerHacerDamage()
+    {
+        CancelInvoke("HacerDamage");
+    }
+    #endregion
+
+
+
+    #region icono detectar jugador
+    public void MostrarUIDetectar()
+    {
+        StartCoroutine(MostrarUIDetectarCoroutine());
+    }
+    IEnumerator MostrarUIDetectarCoroutine()
+    {
+        simboloExclamacion.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(2f);
+        simboloExclamacion.color = new Color(1, 1, 1, 0);
+        yield return null;
+    }
+    #endregion
 
 
 }
