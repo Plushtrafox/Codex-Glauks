@@ -148,16 +148,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8151951390626915735}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38263a43f49794844b7245f416379148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackController: {fileID: 2479614984884505172}
   attackRange: 1
-  damage: 0
-  lifetime: 5
+  damage: 2
+  lifetime: 3
   projectilePrefab: {fileID: 8151951390626915735}
-  frecuencia: 3
+  frecuencia: 2
   amplitud: 3
   ejeTransform: {fileID: 0}
