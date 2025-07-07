@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Codex-Glauks.sln"
+    "dotnet.defaultSolution": "Hairless-Journey.sln"
 }
