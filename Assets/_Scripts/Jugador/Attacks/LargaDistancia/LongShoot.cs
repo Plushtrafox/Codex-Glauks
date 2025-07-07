@@ -16,7 +16,6 @@ public class LongShoot : MonoBehaviour
     {
         if (activateShoot == true)
         {
-            print("está detro");
             GameObject bulletInstantiate= Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
             if (bulletInstantiate.TryGetComponent<Bullet>(out Bullet bulletScript))
             {

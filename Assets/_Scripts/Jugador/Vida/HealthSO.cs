@@ -9,6 +9,14 @@ public class HealthSO : ScriptableObject
     [SerializeField]private int health = 100;
     private int maxHealth = 100;
 
+    public int MaxHealth { get { return maxHealth; } set { maxHealth = value; }}
+
+    public void Sanar(int cantidad)
+    {
+        health += cantidad;
+
+    }
+
     private void OnEnable()
     {
         health = maxHealth; // Initialize health to 100 at the start

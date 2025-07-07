@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float lifetime = 5f; // Duración del proyectil en segundos
+    //[SerializeField] private float lifetime = 5f; // Duración del proyectil en segundos
     [SerializeField] private float damage;
     [SerializeField] private CameraManager cameraManager1;
     public CameraManager CameraManager1
