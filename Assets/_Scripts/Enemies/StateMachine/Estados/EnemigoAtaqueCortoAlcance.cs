@@ -11,7 +11,8 @@ public override void OnUpdateState(EnemigoStateManager contexto)
 {
         if (contexto.Objetivo != null)
         {
-            if (Vector3.Distance(contexto.transform.position, contexto.Objetivo.position) <= contexto.AttackRange)
+            float distanciaJugador = Vector3.Distance(contexto.transform.position, contexto.Objetivo.position);
+            if (distanciaJugador <= contexto.RangoAtaqueCortoAlcance)
             {
 
                 if (!contexto.IsAttacking)
@@ -23,13 +24,13 @@ public override void OnUpdateState(EnemigoStateManager contexto)
                 }
 
             }
-            else if(Vector3.Distance(contexto.transform.position, contexto.Objetivo.position) > contexto.AttackRange)
+            else if(distanciaJugador > contexto.RangoAtaqueCortoAlcance)
             {
                 contexto.IsAttacking = false;
-                contexto.Animator.CrossFade("Caminando", 0.5f);
                 // Si el enemigo se aleja del rango de ataque, vuelve al estado de persecución
                 contexto.ChangeState(contexto.EnemigoPersigueJugador);
             }
+
 
         }
     }

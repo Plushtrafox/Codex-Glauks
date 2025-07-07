@@ -14,32 +14,39 @@ public class EnemigoPersigueJugador : EnemigoBase
             contexto.EstaEnVista = true;
 
         }
-        
-        // Logic to execute when entering the chase state
 
-        //colocar animacion de simbolo de exclamacion arriba del enemigo
     }
     public override void OnUpdateState(EnemigoStateManager contexto)
     {
         if (contexto.Objetivo != null)
         {
             contexto.DistanciaActual = Vector3.Distance(contexto.transform.position, contexto.Objetivo.position);
-            if (contexto.DistanciaActual > contexto.AttackRange && contexto.DistanciaActual <= contexto.RangoDeVision)
-            {
-                contexto.AgenteMovimiento.isStopped = false;
-                contexto.AgenteMovimiento.SetDestination(contexto.Objetivo.position);
 
-            }
-            else if (contexto.DistanciaActual <= contexto.AttackRange)
+
+
+
+             if (contexto.DistanciaActual <= contexto.RangoAtaqueLargoAlcance && contexto.DistanciaActual >= contexto.RangoPerseguirCortoAlcance)
             {
                 contexto.AgenteMovimiento.isStopped = true;
-                contexto.ChangeState(contexto.EnemigoAtaqueCortoAlcance);
+                contexto.ChangeState(contexto.EnemigoDispara);
             }
-            else
+            else if (contexto.DistanciaActual > contexto.RangoPerseguirLargoALcance)
             {
                 contexto.AgenteMovimiento.isStopped = true;
                 contexto.ChangeState(contexto.EnemigoEstatico);
             }
+            else if (contexto.DistanciaActual< contexto.RangoAtaqueCortoAlcance)
+            {
+                contexto.ChangeState(contexto.EnemigoAtaqueCortoAlcance);
+            }
+            else
+            {
+                contexto.AgenteMovimiento.isStopped = false;
+                contexto.AgenteMovimiento.SetDestination(contexto.Objetivo.position);
+            }
+
+
+
 
         }
     }

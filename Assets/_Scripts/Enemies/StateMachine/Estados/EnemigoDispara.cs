@@ -6,17 +6,38 @@ public class EnemigoDispara : EnemigoBase
 
     public override void OnEnterState(EnemigoStateManager contexto)
     {
-        // Logic to execute when entering the chase state
-        Debug.Log("Enemigo ha comenzado a perseguir al jugador.");
+
     }
     public override void OnUpdateState(EnemigoStateManager contexto)
     {
-        // Logic to execute every frame while in the chase state
-        Debug.Log("Enemigo persigue al jugador.");
+        contexto.DistanciaActual = Vector3.Distance(contexto.transform.position, contexto.Objetivo.position);
+
+
+        if (contexto.DistanciaActual > contexto.RangoAtaqueLargoAlcance)
+        {
+            contexto.ChangeState(contexto.EnemigoPersigueJugador);
+        }
+        else if (contexto.DistanciaActual < contexto.RangoAtaqueLargoAlcance && contexto.DistanciaActual > contexto.RangoPerseguirCortoAlcance)
+        {
+
+            contexto.gameObject.transform.LookAt(contexto.Objetivo.position);
+            if (!contexto.IsAttacking)
+            {
+                contexto.IsAttacking = true;
+                contexto.Animator.CrossFade("AtaqueLargoAlcance", 0.2f);
+                // Aquí podrías llamar a un método para realizar el disparo
+            }
+
+        }
+        else if(contexto.DistanciaActual < contexto.RangoPerseguirCortoAlcance)
+        {
+            contexto.ChangeState(contexto.EnemigoPersigueJugador);
+
+        }
     }
     public override void OnExitState(EnemigoStateManager contexto)
     {
-        // Logic to execute when exiting the chase state
-        Debug.Log("Enemigo ha dejado de perseguir al jugador.");
+        contexto.IsAttacking = false;
+
     }
 }
