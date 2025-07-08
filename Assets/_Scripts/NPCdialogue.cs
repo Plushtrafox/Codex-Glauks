@@ -42,6 +42,7 @@ public class NPCdialogue : MonoBehaviour
         dialoguePanel.SetActive(true); // Activa el panel de diálogo
         dialogueMark.SetActive(false); // Desactiva el marcador de diálogo
         lineIndex = 0; // Reinicia el índice de la línea del diálogo
+        Time.timeScale = 0f;
         StartCoroutine (ShowLine()); // Inicia la corrutina para mostrar la primera línea del diálogo
     }
     private void nextDialogueLine()
@@ -56,6 +57,7 @@ public class NPCdialogue : MonoBehaviour
             didDialogueStart= false; // Si no hay más líneas, finaliza el diálogo
             dialoguePanel.SetActive(false);
             dialogueMark.SetActive(true); // Reactiva el marcador de diálogo
+            Time.timeScale = 1f;
         }
     }
     private IEnumerator ShowLine()
@@ -65,7 +67,7 @@ public class NPCdialogue : MonoBehaviour
         foreach(char ch in dialogueLines[lineIndex])
         {
             dialogueText.text += ch; // Agrega cada carácter uno por uno para un efecto de escritura
-            yield return new WaitForSeconds(typingTime); // Ajusta la velocidad del efecto de escritura
+            yield return new WaitForSecondsRealtime(typingTime); // Ajusta la velocidad del efecto de escritura
         }
     }
     private void OnTriggerEnter(Collider other)
