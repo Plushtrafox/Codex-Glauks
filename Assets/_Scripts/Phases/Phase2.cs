@@ -8,10 +8,10 @@ public class Phase2 : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private AudioClipBank audioClipBank;
 
+
     private void OnTriggerExit(Collider other)
     {
-        print("entro al trigger");
-        if (posicionJugador.position.z > transform.position.z)
+        if (posicionJugador.position.x < transform.position.x)
         {
             if (gameManager.CurrentPhase == GamePhase.Phase2)
             {
@@ -20,7 +20,7 @@ public class Phase2 : MonoBehaviour
             gameManager.ChangePhase(GamePhase.Phase2);
             return;
         }
-        else if (posicionJugador.position.z < transform.position.z)
+        else if (posicionJugador.position.x > transform.position.x)
         {
             if (gameManager.CurrentPhase == GamePhase.Phase1)
             {

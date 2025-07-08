@@ -11,7 +11,7 @@ public class EnemigoEstatico : EnemigoBase
         
         contexto.Animator.CrossFade("Base", 0.5f); // Cambia la animación a Idle
         contexto.AgenteMovimiento.isStopped = true;
-            contexto.EstaEnVista = false; // resetea el booleano para que cuando vea al jugador otra vez muestre el UI de detectarlo
+        contexto.EstaEnVista = false; // resetea el booleano para que cuando vea al jugador otra vez muestre el UI de detectarlo
 
     }
     public override void OnUpdateState(EnemigoStateManager contexto)
@@ -19,11 +19,11 @@ public class EnemigoEstatico : EnemigoBase
         if (contexto.Objetivo != null)
         {
             contexto.DistanciaActual = Vector3.Distance(contexto.transform.position, contexto.Objetivo.position);
-            if (contexto.DistanciaActual <= contexto.RangoDeVision)
+            if (contexto.DistanciaActual <= contexto.RangoPerseguirLargoALcance)
             {
-                contexto.Animator.CrossFade("Caminando", 0.5f);
                 contexto.ChangeState(contexto.EnemigoPersigueJugador);
             }
+
         }
 
     }

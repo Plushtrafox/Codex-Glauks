@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Proyectil",
+                    "name": "LargaDistancia",
                     "type": "Button",
                     "id": "fabaa554-7662-407d-b937-484d4fb7b7ee",
                     "expectedControlType": "",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LargaDistancia",
+                    "name": "Giratorio",
                     "type": "Button",
                     "id": "26da0530-3e0f-486b-8493-a7899c92929b",
                     "expectedControlType": "",
@@ -200,7 +200,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Proyectil",
+                    "action": "LargaDistancia",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -211,7 +211,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Proyectil",
+                    "action": "LargaDistancia",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -222,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LargaDistancia",
+                    "action": "Giratorio",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -233,7 +233,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LargaDistancia",
+                    "action": "Giratorio",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
