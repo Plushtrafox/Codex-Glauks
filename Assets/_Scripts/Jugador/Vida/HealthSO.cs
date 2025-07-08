@@ -6,11 +6,8 @@ public class HealthSO : ScriptableObject
 {
     public delegate void tipoEventoPerdida();
     public event tipoEventoPerdida EventoPerdida;
-<<<<<<< HEAD
-    public int health = 100;
-=======
+
     [SerializeField]private int health = 100;
->>>>>>> main
     private int maxHealth = 100;
 
     public int MaxHealth { get { return maxHealth; } set { maxHealth = value; }}
@@ -32,7 +29,6 @@ public class HealthSO : ScriptableObject
         if (health < 0)
         {
             EventoPerdida?.Invoke();
-            Debug.Log("estamos sin vida");
         }
        
     }
