@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Direccion",
+                    "type": "Value",
+                    "id": "20093baf-5142-4159-9571-0042bc4be7d8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -234,6 +243,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Giratorio",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e041cac-3c0e-4c72-87e6-744ab2bb22f7",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direccion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28d0decc-013f-4f8f-aef9-b15791057255",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direccion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

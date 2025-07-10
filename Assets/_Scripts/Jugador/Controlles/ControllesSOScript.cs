@@ -12,12 +12,16 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     
     
     public event tipoEventoBotonSimple EventoInteractuar;
-    public event tipoEventoAxis2 EventoMovimiento;
     public event tipoEventoBotonSimple EventoDash;
     public event tipoEventoBotonSimple EventoAtaqueEmpieza;
     public event tipoEventoBotonSimple EventoAtaqueTermina;
     public event tipoEventoBotonSimple EventoPoder;
     public event tipoEventoBotonSimple EventoLargaDistancia;
+
+    public event tipoEventoAxis2 EventoMovimiento;
+    public event tipoEventoAxis2 EventoDireccion;
+
+
 
 
     private void OnEnable()
@@ -85,5 +89,10 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
             EventoPoder?.Invoke();
         }
 
+    }
+
+    public void OnDireccion(InputAction.CallbackContext context)
+    {
+        EventoDireccion?.Invoke(context.ReadValue<Vector2>());
     }
 }
