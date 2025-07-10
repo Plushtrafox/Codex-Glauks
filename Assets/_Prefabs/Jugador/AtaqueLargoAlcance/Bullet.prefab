@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aea1c092793cc142a40971ba9c4b230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
   damage: 5
   cameraManager1: {fileID: 0}
 --- !u!33 &-8810904855281724867
@@ -115,7 +114,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3932812314021985733}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -131,7 +130,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 5e712cda3b4b0224f998f1d94cd2a5b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,15 +194,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 879043905573962948, guid: 6aed24b9f50740c40b4948a113627a84, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 879043905573962948, guid: 6aed24b9f50740c40b4948a113627a84, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 879043905573962948, guid: 6aed24b9f50740c40b4948a113627a84, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 879043905573962948, guid: 6aed24b9f50740c40b4948a113627a84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

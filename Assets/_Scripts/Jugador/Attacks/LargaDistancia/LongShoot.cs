@@ -24,7 +24,7 @@ public class LongShoot : MonoBehaviour
             print(bulletInstantiate.name);
             if (bulletInstantiate.TryGetComponent<Rigidbody>(out Rigidbody bulletRigidbody))
             {
-                bulletRigidbody.AddForce(spawnPoint.forward * speed); // Aplica fuerza al proyectil
+                bulletRigidbody.AddForce(spawnPoint.forward *100* speed); // Aplica fuerza al proyectil
             }
             StartCoroutine(cooldown());
         }
