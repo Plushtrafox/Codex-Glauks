@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utility.Audio;
@@ -14,7 +15,7 @@ public class JugadorMovimiento : MonoBehaviour
     [SerializeField] private Camera camara;
     [SerializeField] private audioManager audioManager; // Asegúrate de tener un AudioManager en tu escena
     [SerializeField] private Animator animatorJugador; // Referencia al Animator del jugador
-    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private AnimatorBrain animatorBrain; // Referencia al AnimatorBrain del jugador
 
     [Header("Movimiento Jugador")]
     [SerializeField] private float velocidad = 5f;
@@ -36,12 +37,15 @@ public class JugadorMovimiento : MonoBehaviour
     [Header("direccion Jugador")]
     [SerializeField] private float sensibilidadDeRotacion = 0.5f; // Sensibilidad de rotación del jugador
     [SerializeField] private float magnitudDeSensibilidadVision = 0.1f; // Magnitud mínima para considerar la dirección de visión
+    private bool _estaUsandoTecladoMouse; // Variable para verificar si se está usando teclado y mouse
+
+    //info para sistema de animaciones
+    private const int capaCuerpoSuperior = 0; // capa de torso para arriba
+    private const int capaCuerpoInferior = 1; // capa de torso para abajo
 
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-
         control.EventoMovimiento+= movimientoBase;
         control.EventoDash += MovimientoDash;
         control.EventoDireccion += DireccionVista;
@@ -67,8 +71,10 @@ public class JugadorMovimiento : MonoBehaviour
         control.EventoDireccion -= DireccionVista;
     }
 
-    private void movimientoBase(Vector2 axis)
+    private void movimientoBase(Vector2 axis, bool esMouseTeclado)
     {
+        _estaUsandoTecladoMouse = esMouseTeclado; // Actualizar la variable según el tipo de entrada
+
         direccion = camara.transform.forward * axis.y + camara.transform.right * axis.x;
         direccion.y = 0;
     }
@@ -93,10 +99,7 @@ public class JugadorMovimiento : MonoBehaviour
 
     private void DireccionVista(Vector2 direccionInput)
     {
-        if (playerInput.currentControlScheme != "Keyboard&Mouse")
-        {
-            return; // No hacer nada si no es teclado y mouse
-        }
+        _estaUsandoTecladoMouse = true;
 
         direccionInput *= sensibilidadDeRotacion; // Aplicar sensibilidad de rotación
 
@@ -109,14 +112,72 @@ public class JugadorMovimiento : MonoBehaviour
             Quaternion rotacionDeseada = Quaternion.LookRotation(_direccionVista);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDeseada, velocidadRotacion*Time.deltaTime);
-
-            
-
         }
 
+    }
 
+    private void SetAnimacionDefecto(int capa)
+    {
+        if (capa == capaCuerpoSuperior)
+        {
+            RevisarAnimacionSuperior();       
+        }
+        else if (capa == capaCuerpoInferior)
+        {
+            RevisarAnimacionInferior();
+        }
 
     }
+
+    private void RevisarAnimacionSuperior()
+    {
+        RevisarMovimiento(capaCuerpoSuperior);
+
+    }
+    private void RevisarAnimacionInferior()
+    {
+        RevisarMovimiento(capaCuerpoInferior);
+    }
+
+    private void RevisarMovimiento(int capa)
+    {
+
+        if ( _estaUsandoTecladoMouse)
+        {
+            Vector3 velocidadGlobal = rigidbodyJugador.linearVelocity;
+
+            // Convertir a velocidad local (relativa al objeto)
+            Vector3 velocidadLocal = transform.InverseTransformDirection(velocidadGlobal);
+
+            //CODIGO PARA VERIFICAR DIRECCION Y LLAMAR A REPRODUCIR
+
+            if (velocidadLocal.z > 0)
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorMovimientoAdelanteAnimacion, capa, false, false, 0.1f); // Reproducir animación de movimiento hacia adelante
+            }
+            else if (velocidadLocal.z < 0)
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorMovimientoAtrasAnimacion, capa, false, false, 0.1f); // Reproducir animación de movimiento hacia atrás
+            }
+            else if (velocidadLocal.x > 0)
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorMovimientoDerechaAnimacion, capa, false, false, 0.1f); // Reproducir animación de movimiento hacia la derecha
+            }
+            else if (velocidadLocal.x < 0)
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorMovimientoIzquierdaAnimacion, capa, false, false, 0.1f); // Reproducir animación de movimiento hacia la izquierda
+
+            }
+            else
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorDePieAnimacion, capa, false, false); // Reproducir animación de estar de pie
+            }
+
+
+
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -125,31 +186,22 @@ public class JugadorMovimiento : MonoBehaviour
         rigidbodyJugador.linearVelocity = new Vector3(planeVelocity.x, rigidbodyJugador.linearVelocity.y+aumentoGravedad, planeVelocity.z);
 
 
-        if (_direccionVista != Vector3.zero)
+        RevisarAnimacionSuperior();
+        RevisarAnimacionInferior();
+
+
+        if (direccion != Vector3.zero && !_estaUsandoTecladoMouse)
         {
 
 
-
-            Quaternion rotacionDeseada = Quaternion.LookRotation(new Vector3(_direccionVista.x, 0, _direccionVista.z));
+            Quaternion rotacionDeseada = Quaternion.LookRotation(new Vector3(direccion.x, 0, direccion.z));
 
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDeseada.normalized, velocidadRotacion);
 
 
 
         }
-        if (playerInput.currentControlScheme != "Keyboard&Mouse")
-        {
-            if (direccion != Vector3.zero)
-            {
-                Quaternion rotacionDeseada = Quaternion.LookRotation(new Vector3(direccion.x, 0, direccion.z));
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDeseada, velocidadRotacion * Time.fixedDeltaTime);
-            }
-        }
 
-        // Movimiento
-        //transform.Translate(direccion * velocidad * Time.fixedDeltaTime, Space.World);
-
-        // Rotación hacia dirección de movimiento
 
     }
 }

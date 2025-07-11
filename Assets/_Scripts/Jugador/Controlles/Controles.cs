@@ -342,17 +342,6 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""action"": ""Direccion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""28d0decc-013f-4f8f-aef9-b15791057255"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Direccion"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
