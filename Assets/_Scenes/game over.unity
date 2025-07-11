@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viditaSO: {fileID: 11400000, guid: f5f2be75bed1edd42b64f0a017b4ee06, type: 2}
-  menuDePerdida: {fileID: 1560875654}
+  menuPerdida: {fileID: 1560875654}
 --- !u!1001 &8068114213908714159
 PrefabInstance:
   m_ObjectHideFlags: 0
