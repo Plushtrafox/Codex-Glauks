@@ -51,14 +51,24 @@ public class JugadorMovimiento : MonoBehaviour
         control.EventoDireccion += DireccionVista;
     }
 
+    private void Update()
+    {
+        Vector3 velocidadGlobal = rigidbodyJugador.linearVelocity;
 
+        // Convertir a velocidad local (relativa al objeto)
+        Vector3 velocidadLocal = transform.InverseTransformDirection(velocidadGlobal);
+
+        //CODIGO PARA VERIFICAR DIRECCION Y LLAMAR A REPRODUCIR
+
+        animatorJugador.SetFloat("X", Mathf.Clamp(velocidadLocal.x, -1f, 1f));
+        animatorJugador.SetFloat("Z", Mathf.Clamp(velocidadLocal.z, -1f, 1f));
+    }
 
     private void Start()
     {
 
         velocidadActual = velocidad; // Inicializar la velocidad actual al valor de velocidad normal
-        Cursor.visible = false; // Hacer invisible el cursor
-        Cursor.lockState=CursorLockMode.Confined; // Bloquear el cursor dentro de la ventana del juego
+        Cursor.lockState = CursorLockMode.Confined; // Bloquear el cursor dentro de la ventana del juego
 
         //animatorJugador.Play("");
     }
@@ -97,9 +107,27 @@ public class JugadorMovimiento : MonoBehaviour
         velocidadActual = velocidad; 
     }
 
-    private void DireccionVista(Vector2 direccionInput)
+    private void DireccionVista(Vector2 mousePosition)
     {
         _estaUsandoTecladoMouse = true;
+
+
+        Plane plano = new Plane(transform.up, transform.position);
+
+        // Crear un rayo desde la posición del mouse
+        Ray ray = camara.ScreenPointToRay(mousePosition);
+
+        // Calcular el punto de intersección
+        if (plano.Raycast(ray, out float distancia))
+        {
+            Vector3 puntoEnPlano = ray.GetPoint(distancia);
+            Vector3 direccion = puntoEnPlano - transform.position;
+            direccion.y = 0f;
+
+            transform.forward = direccion.normalized; // Actualizar la dirección de la vista del jugador
+        }
+        
+        /*_estaUsandoTecladoMouse = true;
 
         direccionInput *= sensibilidadDeRotacion; // Aplicar sensibilidad de rotación
 
@@ -112,10 +140,9 @@ public class JugadorMovimiento : MonoBehaviour
             Quaternion rotacionDeseada = Quaternion.LookRotation(_direccionVista);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDeseada, velocidadRotacion*Time.deltaTime);
-        }
-
+        }*/
     }
-
+/*
     private void SetAnimacionDefecto(int capa)
     {
         if (capa == capaCuerpoSuperior)
@@ -128,7 +155,9 @@ public class JugadorMovimiento : MonoBehaviour
         }
 
     }
+    */
 
+/*
     private void RevisarAnimacionSuperior()
     {
         RevisarMovimiento(capaCuerpoSuperior);
@@ -138,20 +167,22 @@ public class JugadorMovimiento : MonoBehaviour
     {
         RevisarMovimiento(capaCuerpoInferior);
     }
-
-    private void RevisarMovimiento(int capa)
+*/
+    private void RevisarMovimiento()
     {
+        Vector3 velocidadGlobal = rigidbodyJugador.linearVelocity;
 
-        if ( _estaUsandoTecladoMouse)
+        // Convertir a velocidad local (relativa al objeto)
+        Vector3 velocidadLocal = transform.InverseTransformDirection(velocidadGlobal);
+
+        //CODIGO PARA VERIFICAR DIRECCION Y LLAMAR A REPRODUCIR
+
+        animatorJugador.SetFloat("X", Mathf.Clamp(velocidadLocal.x, -1f, 1f));
+        animatorJugador.SetFloat("Z", Mathf.Clamp(velocidadLocal.z, -1f, 1f));
+
+        if (_estaUsandoTecladoMouse)
         {
-            Vector3 velocidadGlobal = rigidbodyJugador.linearVelocity;
-
-            // Convertir a velocidad local (relativa al objeto)
-            Vector3 velocidadLocal = transform.InverseTransformDirection(velocidadGlobal);
-
-            //CODIGO PARA VERIFICAR DIRECCION Y LLAMAR A REPRODUCIR
-
-            if (velocidadLocal.z > 0)
+            /*if (velocidadLocal.z > 0)
             {
                 animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorMovimientoAdelanteAnimacion, capa, false, false, 0.1f); // Reproducir animación de movimiento hacia adelante
             }
@@ -171,9 +202,7 @@ public class JugadorMovimiento : MonoBehaviour
             else
             {
                 animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorDePieAnimacion, capa, false, false); // Reproducir animación de estar de pie
-            }
-
-
+            }*/
 
         }
     }
@@ -185,21 +214,18 @@ public class JugadorMovimiento : MonoBehaviour
 
         rigidbodyJugador.linearVelocity = new Vector3(planeVelocity.x, rigidbodyJugador.linearVelocity.y+aumentoGravedad, planeVelocity.z);
 
+        RevisarMovimiento();
 
+/*
         RevisarAnimacionSuperior();
         RevisarAnimacionInferior();
-
+*/
 
         if (direccion != Vector3.zero && !_estaUsandoTecladoMouse)
         {
-
-
             Quaternion rotacionDeseada = Quaternion.LookRotation(new Vector3(direccion.x, 0, direccion.z));
 
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDeseada.normalized, velocidadRotacion);
-
-
-
         }
 
 

@@ -335,7 +335,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2e041cac-3c0e-4c72-87e6-744ab2bb22f7"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Pointer>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
