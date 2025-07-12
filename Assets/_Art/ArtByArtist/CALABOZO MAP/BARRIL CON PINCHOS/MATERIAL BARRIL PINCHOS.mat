@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MATERIAL LOZA
+  m_Name: MATERIAL BARRIL PINCHOS
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -30,11 +30,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: e7f4e7de37bc68f4fad12bd3d978d4ef, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3f3f8dbfadb7367488d3c8538d02861a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 6b0a44192fe7bca458e0cf1d9bd87bae, type: 3}
+        m_Texture: {fileID: 2800000, guid: 030ecacaa4fd6064d93430e9d12eb13f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -54,19 +54,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e7f4e7de37bc68f4fad12bd3d978d4ef, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3f3f8dbfadb7367488d3c8538d02861a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: c7525763c744abc478012554b9db3308, type: 3}
+        m_Texture: {fileID: 2800000, guid: 10897a6d9e6ff12408013e026117a7a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: a25f8a72820330e4aa2cfbd68c6de550, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1421b7c1d2da744993627caecc808a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 80733a9338270024ba330e71439b95ec, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0f478d871b1ef714e94c6b815511bccf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -125,7 +125,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6612745152327150127
+--- !u!114 &8490448304309391315
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
