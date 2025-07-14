@@ -21,7 +21,6 @@ public class LongShoot : MonoBehaviour
             {
                 bulletScript.CameraManager1 = cameraManager;
             }
-            print(bulletInstantiate.name);
             if (bulletInstantiate.TryGetComponent<Rigidbody>(out Rigidbody bulletRigidbody))
             {
                 bulletRigidbody.AddForce(spawnPoint.forward *100* speed); // Aplica fuerza al proyectil

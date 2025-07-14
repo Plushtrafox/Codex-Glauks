@@ -10,22 +10,19 @@ public class Bullet : MonoBehaviour
         get => cameraManager1;
         set => cameraManager1 = value;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-
-        if (collision == null) return;
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemigo))
+        if (other == null) return;
+        if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemigo))
         {
             enemigo.TakeDamage(damage);
 
             cameraManager1.EventoShakeCamaraGolpe?.Invoke(); // Invoca el evento de sacudida de cámara al golpear un enemigo
         }
+        print(other.gameObject.name);
         Destroy(gameObject);
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
