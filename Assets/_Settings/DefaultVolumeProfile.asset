@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.84079033, y: 0.90570074, z: 1, w: -0.02225311}
+    m_Value: {x: 0.8384713, y: 0.9012692, z: 1, w: -0.02225311}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: 0}
@@ -480,10 +480,10 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 7.21
+    m_Value: 15.42
   tintColor:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   bloomMip:
     m_OverrideState: 1
     m_Value: 1
