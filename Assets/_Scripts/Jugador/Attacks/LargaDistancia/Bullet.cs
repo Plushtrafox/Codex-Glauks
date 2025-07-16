@@ -19,7 +19,6 @@ public class Bullet : MonoBehaviour
 
             cameraManager1.EventoShakeCamaraGolpe?.Invoke(); // Invoca el evento de sacudida de cámara al golpear un enemigo
         }
-        print(other.gameObject.name);
         Destroy(gameObject);
 
     }

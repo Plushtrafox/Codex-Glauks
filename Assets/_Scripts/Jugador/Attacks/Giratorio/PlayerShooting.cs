@@ -12,43 +12,55 @@ public class PlayerShooting : MonoBehaviour
     public GameObject Proyectile;  // Referencia de la bala
     [SerializeField] private ControllesSOSCript controlesInput; // Referencia al scriptable object de controles
     [SerializeField] private Transform ejeTransform;
-    [SerializeField] private bool usingAbility = false;
-    [SerializeField] private float abilityCooldown = 3; 
+    [SerializeField] private bool puedeUsarHabilidad = false;
+    [SerializeField] private float abilityCooldown = 3;
+    [SerializeField] private PlumaManager scriptPlumaAtaque; // Referencia al script de la cámara para invocar eventos de sacudida de cámara
+    [SerializeField] private AnimatorBrain animatorBrain; // Referencia al script AnimatorBrain para manejar las animaciones del jugador
 
-    void Shoot()
+
+    private void ShootAnimation()
     {
-        if (!usingAbility)
+        if (puedeUsarHabilidad)
         {
-            GameObject bullet = Instantiate(Proyectile);// Creo la bala y la ubico con una rotación
-                                                        // El prefab de la bala debe tener rb
+            animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorHabilidadGiratoria, 0, true, false);
 
-            if (bullet.TryGetComponent<Proyectile>(out Proyectile rb)) // Si el prefab tiene un rigidbody
-            {
-                rb.EjeTransform = ejeTransform; // Asigno el eje de rotación a la bala
-            }
 
-            usingAbility = true;
-            Invoke(nameof(resetAttack), abilityCooldown);
+            puedeUsarHabilidad = false;
+            
         }
-         
 
-        
+    }
 
+    private void UsarPoderLibroGiratorio()
+    {
+        GameObject bullet = Instantiate(Proyectile);// Creo la bala y la ubico con una rotación
+                                                    // El prefab de la bala debe tener rb
+
+        if (bullet.TryGetComponent<Proyectile>(out Proyectile rb)) // Si el prefab tiene un rigidbody
+        {
+            rb.EjeTransform = ejeTransform; // Asigno el eje de rotación a la bala
+
+            StartCoroutine(ReactivarPoderGiratorio());
+        }
     }
     private void Awake()
     {
-        controlesInput.EventoPoder += Shoot; // Asigno el evento de disparo del scriptable object
+        controlesInput.EventoPoder += ShootAnimation; // Asigno el evento de disparo del scriptable object
+        scriptPlumaAtaque.EventoPoderLibroGiratorio += UsarPoderLibroGiratorio;
         
     }
+
     private void OnDisable()
     {
-        controlesInput.EventoPoder -= Shoot; // Desasigno el evento de disparo del scriptable object
+        controlesInput.EventoPoder -= ShootAnimation; // Desasigno el evento de disparo del scriptable object
     }
 
-    private void resetAttack()
+    IEnumerator ReactivarPoderGiratorio()
     {
-        usingAbility = false;
+        yield return new WaitForSeconds(abilityCooldown); 
+        puedeUsarHabilidad = true;
+        yield return null;
     }
 
-    }
+}
 

@@ -4,8 +4,13 @@ public class PlumaManager : MonoBehaviour
 {
     [SerializeField] private GameObject plumaCollider;
 
-    public delegate void TipoAtaqueNormal();
-    public event TipoAtaqueNormal EventoReactivarAtaque;
+    public delegate void TipoEventoBasico();
+    public event TipoEventoBasico EventoReactivarAtaque;
+    public event TipoEventoBasico EventoDispararAtaqueLargoAlcance;
+    public event TipoEventoBasico EventoReactivarAtaqueLargoAlcance;
+    public event TipoEventoBasico EventoPoderLibroGiratorio;
+
+
 
 
     public void ActivarColliderAtaque()
@@ -20,5 +25,19 @@ public class PlumaManager : MonoBehaviour
     public void ReactivarBoolAtaque()
     {
         EventoReactivarAtaque?.Invoke(); // Invoca el evento para reactivar el booleano de ataque
+    }
+
+    public void ActivarDisparo()
+    {
+        EventoDispararAtaqueLargoAlcance?.Invoke();
+    }
+
+    public void ReactivarDisparo()
+    {
+        EventoReactivarAtaqueLargoAlcance?.Invoke();
+    }
+    public void ActivarPoderLibroGiratorio()
+    {
+        EventoPoderLibroGiratorio?.Invoke();
     }
 }

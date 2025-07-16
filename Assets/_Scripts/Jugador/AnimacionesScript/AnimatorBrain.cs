@@ -20,7 +20,13 @@ public enum AnimacionesJugador
     JugadorMovimientoDerechaAnimacion,
     JugadorMuereAnimacion1,
     JugadorMuereAnimacion2,
+    JugadorRecargaAtaqueAnimacion,
     NONE
+}
+public enum CapasAnimacion
+{
+    CapaSuperior,
+    CapaInferior
 }
 
 
@@ -42,11 +48,13 @@ public class AnimatorBrain : MonoBehaviour
         Animator.StringToHash("JugadorMovimientoDerechaAnimacion"),
         Animator.StringToHash("JugadorMuereAnimacion1"),
         Animator.StringToHash("JugadorMuereAnimacion2"),
+        Animator.StringToHash("JugadorRecargarAtaque"),
+        Animator.StringToHash("Movement"),
     };
     [SerializeField] private Animator animatorJugador;
     private AnimacionesJugador[] animacionesActivas;
     private bool[] capaBloqueada;
-    private Action<int> AnimacionDefecto;
+
 
 
     //info para sistema de animaciones
@@ -102,21 +110,25 @@ public class AnimatorBrain : MonoBehaviour
 
     }
 
-    public void ReproducirAnimacion(AnimacionesJugador animacion, int capa, bool seBloquea, bool pasarBloqueo, float crossfade=0.2f)
+    public void ReproducirAnimacion(AnimacionesJugador animacion, CapasAnimacion capaAnimacion, bool seBloquea, bool pasarBloqueo, float crossfade=0.2f)
     {
+        int capaAIterar = capaAnimacion == CapasAnimacion.CapaSuperior ? capaCuerpoSuperior : capaCuerpoInferior;
         if (animacion== AnimacionesJugador.NONE)
         {
-            AnimacionDefecto(capa);
+            animacionesActivas[capaAIterar] = animacion;
+            capaBloqueada[capaAIterar] = false;
+
+            animatorJugador.CrossFade("Movement", 0.1f);
             return;
         }
-        if (capaBloqueada[capa] && !pasarBloqueo) return;
-        capaBloqueada[capa] = seBloquea;
 
-        if (animacionesActivas[capa]==animacion) return;
+        if (capaBloqueada[capaAIterar] && !pasarBloqueo) {  return; }
+        capaBloqueada[capaAIterar] = seBloquea;
+        if (animacionesActivas[capaAIterar] ==animacion) return;
 
-        animacionesActivas[capa] = animacion;
+        animacionesActivas[capaAIterar] = animacion;
 
-        animatorJugador.CrossFade(animacionesJugador[(int)animacionesActivas[capa]], crossfade, capa);
+        animatorJugador.CrossFade(animacionesJugador[(int)animacionesActivas[capaAIterar]], crossfade, capaAIterar, 0f,0f);
 
     }
 }

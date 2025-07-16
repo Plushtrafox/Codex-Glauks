@@ -15,6 +15,7 @@ public class PlumaScript : MonoBehaviour
                 enemigo.TakeDamage(damage);
 
                 cameraManager.EventoShakeCamaraGolpe?.Invoke(); // Invoca el evento de sacudida de cámara al golpear un enemigo
+                cameraManager.EventoHitStop?.Invoke();
             }
 
         }

@@ -7,42 +7,54 @@ public class LongShoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform spawnPoint; // Punto de origen del proyectil
     [SerializeField] private float speed = 20f; // Velocidad del proyectil
-    [SerializeField] private float shootTime = 0.5f; // Tiempo entre disparos
     [SerializeField] private CameraManager cameraManager;
-    private bool activateShoot= true;
+    [SerializeField] private PlumaManager ataqueManager;
+    [SerializeField] private AnimatorBrain animatorBrain;
 
+    [SerializeField]private bool puedeDisparar= true;
 
     private void Shoot()
     {
-        if (activateShoot == true)
+        if (puedeDisparar == true)
         {
-            GameObject bulletInstantiate= Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+            animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueLargoAlcance, 0, true, false, 0.1f);
+            puedeDisparar = false;
+        }
+    }
+
+    private void DisparoLargaDistancia()
+    {
+
+            GameObject bulletInstantiate = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
             if (bulletInstantiate.TryGetComponent<Bullet>(out Bullet bulletScript))
             {
                 bulletScript.CameraManager1 = cameraManager;
             }
             if (bulletInstantiate.TryGetComponent<Rigidbody>(out Rigidbody bulletRigidbody))
             {
-                bulletRigidbody.AddForce(spawnPoint.forward *100* speed); // Aplica fuerza al proyectil
+                bulletRigidbody.AddForce(transform.forward * speed); // Aplica fuerza al proyectil
             }
-            StartCoroutine(cooldown());
-        }
+        
+    }
 
+    private void ReactivarAtaqueLargoAlcance()
+    {
+        puedeDisparar = true;
     }
     private void Awake()
     {
         controles.EventoLargaDistancia += Shoot;
+        ataqueManager.EventoDispararAtaqueLargoAlcance += DisparoLargaDistancia;
+        ataqueManager.EventoReactivarAtaqueLargoAlcance += ReactivarAtaqueLargoAlcance;
     }
     private void OnDisable()
     {
         controles.EventoLargaDistancia -= Shoot;
+        ataqueManager.EventoDispararAtaqueLargoAlcance -= DisparoLargaDistancia;
+        ataqueManager.EventoReactivarAtaqueLargoAlcance -= ReactivarAtaqueLargoAlcance;
+
+
     }
-    IEnumerator cooldown()
-    {
-        activateShoot = false;
-        yield return new WaitForSeconds(shootTime);
-        activateShoot=true;
-        yield return null;
-    }
+
 }
 

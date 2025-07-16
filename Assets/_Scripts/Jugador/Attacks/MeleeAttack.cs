@@ -17,7 +17,14 @@ public class MeleeAttack : MonoBehaviour
     [Header("Melee Attack Settings")]
 
     [SerializeField]private bool estaAtacando = false; // Bandera para evitar múltiples ataques simultáneos
+
+
+    [Header("parametros ATAQUE PESADO")]
+    [SerializeField] private float tiempoDeCarga = 1.0f;
+    [SerializeField]private float tiempoActual = 0f;
+    [SerializeField]private bool estaCargandoAtaque= false;
     
+
 
 
 
@@ -27,33 +34,73 @@ public class MeleeAttack : MonoBehaviour
 
     private void Awake()
     {
-        controles.EventoAtaqueEmpieza += Hit;
+        controles.EventoAtaqueEmpieza += EmpiezaAtaque;
+        controles.EventoAtaqueTermina += TerminaAtaque;
         scriptPlumaAtaque.EventoReactivarAtaque += ReactivarBoolAtaque; // Suscribirse al evento de reactivación del ataque
     }
 
 
     private void OnDisable()
     {
-        controles.EventoAtaqueEmpieza -= Hit;
+        controles.EventoAtaqueEmpieza -= EmpiezaAtaque;
+        controles.EventoAtaqueTermina -= TerminaAtaque;
+
         scriptPlumaAtaque.EventoReactivarAtaque += ReactivarBoolAtaque; // Suscribirse al evento de reactivación del ataque
 
     }
 
 
-    private void Hit()
+    private void EmpiezaAtaque()
     {
+        if (estaCargandoAtaque) return;
 
-        if (!estaAtacando)
+
+        animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorRecargaAtaqueAnimacion, CapasAnimacion.CapaSuperior, true, true, 0.01f);
+
+        StartCoroutine(CargaDeAtaque());
+        estaCargandoAtaque = true;
+    
+
+
+    }
+
+    IEnumerator CargaDeAtaque()
+    {
+        while (tiempoActual < tiempoDeCarga) 
         {
-            animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueCortoAlcanceAnimacion1, 1, true,true);
-            animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueCortoAlcanceAnimacion1, 0, true, true);
 
-            animator.CrossFade("JugadorAtaqueCortoAlcanceAnimacion1", 0.02f, 0,0f, 0);//nombre incorrecto pero al cambiar el nombre de la animacion no se cambia el nombre de la referencia NO SE PORQUE XD
-            animator.Update(0f); // Asegura que el animador esté actualizado antes de verificar el estado
-            estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
+            tiempoActual += Time.deltaTime;
+            yield return null;
+
+
         }
 
 
+        yield return null;
+    }
+    private void TerminaAtaque()
+    {
+        StopCoroutine(CargaDeAtaque());
+        if (!estaAtacando)
+        {
+            if (tiempoActual >= tiempoDeCarga)
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaquePesado, CapasAnimacion.CapaSuperior, true, true, 0.01f);
+                estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
+                estaCargandoAtaque = false;
+                //golpe pesado
+            }
+            else if (tiempoActual < tiempoDeCarga)
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueCortoAlcanceAnimacion1, CapasAnimacion.CapaSuperior, true, true, 0.01f);
+                estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
+                estaCargandoAtaque = false;
+
+            }
+
+
+
+        }
     }
 
 
@@ -62,6 +109,8 @@ public class MeleeAttack : MonoBehaviour
         estaAtacando = false; // Marca que ya no se está atacando
 
     }
+
+    
 
 
 }

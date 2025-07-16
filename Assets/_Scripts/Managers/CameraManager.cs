@@ -19,14 +19,22 @@ public class CameraManager : MonoBehaviour
     public Action EventoShakeCamaraGolpe;
 
 
+    [Header("parametros HITSTOP")]
+    [SerializeField] private float tiempoDeHitstop=0.1f;
+    private bool estaEnHitstop = false;
+    public Action EventoHitStop;
+
+
 
 
     private void Awake()
     {
+        EventoHitStop += HitStop;
         EventoShakeCamaraGolpe += ShakeCameraGolpe;
     }
     private void OnDisable()
     {
+        EventoHitStop -= HitStop;
         EventoShakeCamaraGolpe -= ShakeCameraGolpe;
     }
 
@@ -50,6 +58,27 @@ public class CameraManager : MonoBehaviour
         camaraShake.FrequencyGain = 0f;
         camaraShake.AmplitudeGain = 0f;
         estaEnGolpe = false;
+        yield return null;
+    }
+
+
+
+    private void HitStop()
+    {
+        if (!estaEnHitstop)
+        {
+            estaEnHitstop = true;
+            StartCoroutine(HitStopCorrutina());
+
+        }
+    }
+
+    IEnumerator HitStopCorrutina()
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(tiempoDeHitstop);
+        Time.timeScale = 1;
+        estaEnHitstop = false;
         yield return null;
     }
 }

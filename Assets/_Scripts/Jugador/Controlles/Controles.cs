@@ -257,6 +257,17 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""de355bc2-3ae7-46a9-a518-336575c31ba4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactuar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5aae0156-4462-4ed7-80d0-cf75d6a44878"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -290,8 +301,8 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""de355bc2-3ae7-46a9-a518-336575c31ba4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""85237895-e6a2-4252-a7fd-33bb1eafe23f"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -323,8 +334,8 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""85237895-e6a2-4252-a7fd-33bb1eafe23f"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""id"": ""a98fa29b-62c5-49ee-8ba4-404c0d1bee76"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
