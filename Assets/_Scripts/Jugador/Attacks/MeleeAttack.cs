@@ -52,7 +52,7 @@ public class MeleeAttack : MonoBehaviour
 
     private void EmpiezaAtaque()
     {
-        if (estaCargandoAtaque) return;
+        if (estaCargandoAtaque || estaAtacando) return;
 
 
         animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorRecargaAtaqueAnimacion, CapasAnimacion.CapaSuperior, true, true, 0.01f);
