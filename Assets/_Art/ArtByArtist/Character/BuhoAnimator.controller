@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf64d71019a29e4b9cd3f0432f9c393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionObjetivo: 13
+  animacionObjetivo: 14
   bloquearCapa: 0
   cancelarAnimacion: 0
   crossfade: 0.01
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf64d71019a29e4b9cd3f0432f9c393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionObjetivo: 13
+  animacionObjetivo: 14
   bloquearCapa: 0
   cancelarAnimacion: 0
   crossfade: 0.01
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf64d71019a29e4b9cd3f0432f9c393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionObjetivo: 13
+  animacionObjetivo: 14
   bloquearCapa: 0
   cancelarAnimacion: 0
   crossfade: 0.01
@@ -442,6 +442,22 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-3001028030410533199
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf64d71019a29e4b9cd3f0432f9c393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animacionObjetivo: 14
+  bloquearCapa: 0
+  cancelarAnimacion: 0
+  crossfade: 0.01
 --- !u!1102 &-2718054063809781840
 AnimatorState:
   serializedVersion: 6
@@ -630,7 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf64d71019a29e4b9cd3f0432f9c393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionObjetivo: 13
+  animacionObjetivo: 14
   bloquearCapa: 0
   cancelarAnimacion: 0
   crossfade: 0.01
@@ -1015,7 +1031,8 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -3001028030410533199}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1199,7 +1216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf64d71019a29e4b9cd3f0432f9c393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionObjetivo: 13
+  animacionObjetivo: 14
   bloquearCapa: 0
   cancelarAnimacion: 0
   crossfade: 0.01
@@ -1215,7 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf64d71019a29e4b9cd3f0432f9c393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacionObjetivo: 13
+  animacionObjetivo: 14
   bloquearCapa: 0
   cancelarAnimacion: 0
   crossfade: 0.01

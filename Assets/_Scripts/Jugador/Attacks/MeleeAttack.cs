@@ -66,6 +66,7 @@ public class MeleeAttack : MonoBehaviour
 
     IEnumerator CargaDeAtaque()
     {
+        tiempoActual = 0f; // Reinicia el tiempo actual al inicio de la carga del ataque
         while (tiempoActual < tiempoDeCarga) 
         {
 
@@ -85,7 +86,7 @@ public class MeleeAttack : MonoBehaviour
         {
             if (tiempoActual >= tiempoDeCarga)
             {
-                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaquePesado, CapasAnimacion.CapaSuperior, true, true, 0.01f);
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaquePesado, CapasAnimacion.CapaSuperior, true, true, 0.001f);
                 estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
                 estaCargandoAtaque = false;
                 //golpe pesado
