@@ -11747,7 +11747,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1880332711}
+  m_Father: {fileID: 1946428462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1181259263
 MonoBehaviour:
@@ -50394,11 +50394,6 @@ Transform:
   - {fileID: 71300223}
   m_Father: {fileID: 954849119}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1880332711 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1092125143078386819, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
-  m_PrefabInstance: {fileID: 1946428460}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1899133685
 GameObject:
   m_ObjectHideFlags: 0
@@ -52447,6 +52442,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3768477113284843663, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4660576159340497285, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
       propertyPath: cameraManager
       value: 
@@ -52461,7 +52460,7 @@ PrefabInstance:
       objectReference: {fileID: 5134618657838896383, guid: 54417f20b13092848a79bc1453db7203, type: 3}
     - target: {fileID: 6529926907748711703, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7046971681806876436, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
       propertyPath: camara
@@ -52487,11 +52486,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6529926907748711703, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1092125143078386819, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2915849979548585265, guid: 6030714ce03cc8443a8dd0be4de05b00, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1181259262}
     m_AddedComponents: []
