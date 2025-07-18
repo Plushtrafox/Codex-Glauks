@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/_Art/ArtByArtist/Character/PrometeoSwordAtackB.fbx.meta
-guid: 04cb2f376896be84fa8bfa27de61eb33
-========
-guid: 09a53749da559244ab70ce33ad874452
->>>>>>>> Art:Assets/_Art/ArtByArtist/Character/Prometeo/Prometeo_Standing.fbx.meta
+guid: 424d8c57a17dfac4fb52fa4d4726d856
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,7 +13,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
@@ -35,19 +31,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: JugadorAtaqueCortoAlcanceAnimacion2ReadOnly
+      name: JugadorDashAnimacionReadOnly
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 13
+      lastFrame: 11
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
