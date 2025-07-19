@@ -1,6 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &-4205456415940535255
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -14,6 +15,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 9
+=======
+>>>>>>> 756cdd4ed8b1a1cbf2469229629f766427214210
 =======
 >>>>>>> 756cdd4ed8b1a1cbf2469229629f766427214210
 --- !u!21 &2100000
@@ -139,7 +142,10 @@ Material:
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 756cdd4ed8b1a1cbf2469229629f766427214210
 --- !u!114 &4198119463702488157
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -153,4 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 9
+<<<<<<< HEAD
+>>>>>>> 756cdd4ed8b1a1cbf2469229629f766427214210
+=======
 >>>>>>> 756cdd4ed8b1a1cbf2469229629f766427214210
