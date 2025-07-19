@@ -6,8 +6,11 @@ public class GolpePluma : MonoBehaviour
     public int cantidadRayos = 6;
     public float radio = 0.5f;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        // 💡 Solo atacar si el botón de ataque está presionado
+        if (!Input.GetButton("Fire1")) return; // Usa "Fire1" para clic izquierdo o botón asignado
+
         if (other.CompareTag("Enemigo"))
         {
             for (int i = 0; i < cantidadRayos; i++)
@@ -19,9 +22,9 @@ public class GolpePluma : MonoBehaviour
                 );
 
                 Quaternion rotacion = Quaternion.Euler(
-                    Random.Range(80f, 100f),    // vertical
-                    Random.Range(0f, 360f),     // giro horizontal
-                    Random.Range(-30f, 30f)     // inclinación diagonal
+                    Random.Range(80f, 100f),
+                    Random.Range(0f, 360f),
+                    Random.Range(-30f, 30f)
                 );
 
                 GameObject rayo = Instantiate(efectoGolpe, posicion, rotacion);
