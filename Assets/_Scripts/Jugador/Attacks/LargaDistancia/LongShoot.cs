@@ -13,11 +13,23 @@ public class LongShoot : MonoBehaviour
 
     [SerializeField]private bool puedeDisparar= true;
 
+    [SerializeField] private MeleeAttack meleeAtackScript; // Referencia al script de ataque cuerpo a cuerpo
+
+    private void DesactivarAtaque()
+    {
+        if (puedeDisparar)
+        {
+            puedeDisparar = false; // Desactiva la capacidad de disparar
+
+        }
+    }
+
     private void Shoot()
     {
-        if (puedeDisparar == true)
+        if (puedeDisparar)
         {
             animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueLargoAlcance, 0, true, false, 0.1f);
+            meleeAtackScript.EventoDesactivarAtaques?.Invoke(); // Invoca el evento para desactivar ataques cuerpo a cuerpo
             puedeDisparar = false;
         }
     }
@@ -39,19 +51,21 @@ public class LongShoot : MonoBehaviour
 
     private void ReactivarAtaqueLargoAlcance()
     {
-        puedeDisparar = true;
+        puedeDisparar = true;   
     }
     private void Awake()
     {
         controles.EventoLargaDistancia += Shoot;
         ataqueManager.EventoDispararAtaqueLargoAlcance += DisparoLargaDistancia;
         ataqueManager.EventoReactivarAtaqueLargoAlcance += ReactivarAtaqueLargoAlcance;
+        meleeAtackScript.EventoDesactivarAtaques += DesactivarAtaque; // Suscribirse al evento de desactivación de ataques
     }
     private void OnDisable()
     {
         controles.EventoLargaDistancia -= Shoot;
         ataqueManager.EventoDispararAtaqueLargoAlcance -= DisparoLargaDistancia;
         ataqueManager.EventoReactivarAtaqueLargoAlcance -= ReactivarAtaqueLargoAlcance;
+        meleeAtackScript.EventoDesactivarAtaques -= DesactivarAtaque; // Desuscribirse del evento de desactivación de ataques
 
 
     }

@@ -22,6 +22,7 @@ public class NPCdialogue : MonoBehaviour
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E)) // Cambia la tecla según tu preferencia
         {
+            print("esta iniciando comunicacion");
             if (!didDialogueStart) // Si el diálogo no ha comenzado, inicia el diálogo
                 StartDialogue();
             else if (dialogueText.text == dialogueLines[lineIndex]) // Cambia la tecla según tu preferencia
@@ -72,8 +73,12 @@ public class NPCdialogue : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        print("entro algo");
+
+        if (other.gameObject.CompareTag("Player"))
         {
+            print("entro jugador");
+
             isPlayerInRange = true;
             dialogueMark.SetActive(true); // Activa el marcador de diálogo cuando el jugador entra en rango
             // Aquí puedes iniciar el diálogo o mostrar un mensaje al jugador
