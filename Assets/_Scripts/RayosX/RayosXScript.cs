@@ -23,7 +23,6 @@ public class RayosXScript : MonoBehaviour
         {
             foreach (var materialRayosXPared in materialRayosXPared)
             {
-                print("deberia ponerse transparente");
                 materialRayosXPared.SetFloat(idSize, 1.5f);
 
             }
@@ -32,7 +31,6 @@ public class RayosXScript : MonoBehaviour
         {
             foreach (var materialRayosXPared in materialRayosXPared)
             {
-                print("deberia ponerse opaco");
                 materialRayosXPared.SetFloat(idSize, 0);
             }
         }
