@@ -1264,6 +1264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 4341052368785299326, guid: 0a59f31219c031d4785d499e3645f786, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6230404113506734352, guid: 0a59f31219c031d4785d499e3645f786, type: 3}
       propertyPath: dialogueText
       value: 
