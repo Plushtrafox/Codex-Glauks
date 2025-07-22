@@ -144,6 +144,15 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Direccion"",
+                    ""type"": ""Value"",
+                    ""id"": ""20093baf-5142-4159-9571-0042bc4be7d8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -248,6 +257,17 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""de355bc2-3ae7-46a9-a518-336575c31ba4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactuar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5aae0156-4462-4ed7-80d0-cf75d6a44878"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -281,8 +301,8 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""de355bc2-3ae7-46a9-a518-336575c31ba4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""85237895-e6a2-4252-a7fd-33bb1eafe23f"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -314,12 +334,23 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""85237895-e6a2-4252-a7fd-33bb1eafe23f"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""id"": ""a98fa29b-62c5-49ee-8ba4-404c0d1bee76"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Giratorio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e041cac-3c0e-4c72-87e6-744ab2bb22f7"",
+                    ""path"": ""<Pointer>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direccion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -336,6 +367,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         m_Jugador_Ataque = m_Jugador.FindAction("Ataque", throwIfNotFound: true);
         m_Jugador_LargaDistancia = m_Jugador.FindAction("LargaDistancia", throwIfNotFound: true);
         m_Jugador_Giratorio = m_Jugador.FindAction("Giratorio", throwIfNotFound: true);
+        m_Jugador_Direccion = m_Jugador.FindAction("Direccion", throwIfNotFound: true);
     }
 
     ~@Controles()
@@ -422,6 +454,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     private readonly InputAction m_Jugador_Ataque;
     private readonly InputAction m_Jugador_LargaDistancia;
     private readonly InputAction m_Jugador_Giratorio;
+    private readonly InputAction m_Jugador_Direccion;
     /// <summary>
     /// Provides access to input actions defined in input action map "Jugador".
     /// </summary>
@@ -457,6 +490,10 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Jugador/Giratorio".
         /// </summary>
         public InputAction @Giratorio => m_Wrapper.m_Jugador_Giratorio;
+        /// <summary>
+        /// Provides access to the underlying input action "Jugador/Direccion".
+        /// </summary>
+        public InputAction @Direccion => m_Wrapper.m_Jugador_Direccion;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -501,6 +538,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Giratorio.started += instance.OnGiratorio;
             @Giratorio.performed += instance.OnGiratorio;
             @Giratorio.canceled += instance.OnGiratorio;
+            @Direccion.started += instance.OnDireccion;
+            @Direccion.performed += instance.OnDireccion;
+            @Direccion.canceled += instance.OnDireccion;
         }
 
         /// <summary>
@@ -530,6 +570,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Giratorio.started -= instance.OnGiratorio;
             @Giratorio.performed -= instance.OnGiratorio;
             @Giratorio.canceled -= instance.OnGiratorio;
+            @Direccion.started -= instance.OnDireccion;
+            @Direccion.performed -= instance.OnDireccion;
+            @Direccion.canceled -= instance.OnDireccion;
         }
 
         /// <summary>
@@ -612,5 +655,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGiratorio(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Direccion" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDireccion(InputAction.CallbackContext context);
     }
 }

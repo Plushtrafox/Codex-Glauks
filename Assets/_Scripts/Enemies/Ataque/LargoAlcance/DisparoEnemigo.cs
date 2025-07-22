@@ -5,6 +5,7 @@ public class DisparoEnemigo : MonoBehaviour
     [SerializeField] private GameObject prefabDisparo;
     [SerializeField] private Transform puntoDisparo;
     [SerializeField] private float velocidadDisparo = 10f;
+    [SerializeField] private Transform objetivo;
 
     public void DisparoEnemigoBase()
     {
@@ -12,7 +13,9 @@ public class DisparoEnemigo : MonoBehaviour
 
         if (balaNueva.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
-            rb.AddForce(puntoDisparo.right * velocidadDisparo, ForceMode.Impulse);
+            Vector3 direccionDisparo = (objetivo.position - puntoDisparo.position).normalized;
+            direccionDisparo.y = 0; // Asegura que el disparo sea horizontal
+            rb.AddForce(direccionDisparo * velocidadDisparo, ForceMode.Impulse);
 
         }
     }

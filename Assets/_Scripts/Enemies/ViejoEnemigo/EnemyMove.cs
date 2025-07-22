@@ -10,6 +10,11 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private float cooldown=1f; 
     [SerializeField] private int attackcount=20;
 
+    private void Start()
+    {
+        NavMesh.SamplePosition(transform.position, out NavMeshHit nav, 20f, 0);
+        agent.Warp(nav.position);
+    }
 
     private void FixedUpdate()
     {

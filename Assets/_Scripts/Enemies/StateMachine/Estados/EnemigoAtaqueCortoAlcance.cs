@@ -11,6 +11,7 @@ public override void OnUpdateState(EnemigoStateManager contexto)
 {
         if (contexto.Objetivo != null)
         {
+            contexto.VerObjetivo();
             float distanciaJugador = Vector3.Distance(contexto.transform.position, contexto.Objetivo.position);
             if (distanciaJugador <= contexto.RangoAtaqueCortoAlcance)
             {
@@ -19,7 +20,7 @@ public override void OnUpdateState(EnemigoStateManager contexto)
                 {
                     //InvokeRepeating("Attack", 0, contexto.Cooldown);
                     contexto.IsAttacking = true;
-                    contexto.Animator.CrossFade("AtaqueCortoAlcance", 0.5f);
+                    contexto.Animator.CrossFade("EnemigoAtaqueAnimacion", 0.5f);
 
                 }
 
@@ -37,11 +38,6 @@ public override void OnUpdateState(EnemigoStateManager contexto)
 public override void OnExitState(EnemigoStateManager contexto)
 {
     // Logic to execute when exiting the chase state
-    Debug.Log("Enemigo ha dejado de perseguir al jugador.");
 }
 
-    void Attack()
-    {
-        //vidaJugador.Damage(contexto.Attackcount);
-    }
 }

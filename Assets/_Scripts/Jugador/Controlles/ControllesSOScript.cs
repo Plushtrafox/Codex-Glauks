@@ -7,17 +7,22 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
 {
     private Controles controlesInput;
 
+    public delegate void tipoEventoAxisMove(Vector2 axis, bool esMouseTeclado);
     public delegate void tipoEventoAxis2(Vector2 axis);
     public delegate void tipoEventoBotonSimple();
     
     
     public event tipoEventoBotonSimple EventoInteractuar;
-    public event tipoEventoAxis2 EventoMovimiento;
     public event tipoEventoBotonSimple EventoDash;
     public event tipoEventoBotonSimple EventoAtaqueEmpieza;
     public event tipoEventoBotonSimple EventoAtaqueTermina;
     public event tipoEventoBotonSimple EventoPoder;
     public event tipoEventoBotonSimple EventoLargaDistancia;
+
+    public event tipoEventoAxisMove EventoMovimiento;
+    public event tipoEventoAxis2 EventoDireccion;
+
+
 
 
     private void OnEnable()
@@ -36,7 +41,16 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
 
     public void OnMover(InputAction.CallbackContext context)
     {
-        EventoMovimiento?.Invoke(context.ReadValue<Vector2>());
+        if (context.control.device is Gamepad)
+        {
+            EventoMovimiento?.Invoke(context.ReadValue<Vector2>(), false);
+
+
+        }
+        else if (context.control.device is Keyboard )
+        {
+            EventoMovimiento?.Invoke(context.ReadValue<Vector2>(), true);
+        }
     }
 
   
@@ -85,5 +99,11 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
             EventoPoder?.Invoke();
         }
 
+    }
+
+    public void OnDireccion(InputAction.CallbackContext context)
+    {
+        
+        EventoDireccion?.Invoke(context.ReadValue<Vector2>());
     }
 }

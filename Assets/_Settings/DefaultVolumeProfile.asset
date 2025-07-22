@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.84079033, y: 0.90570074, z: 1, w: -0.02225311}
+    m_Value: {x: 0.8384713, y: 0.9012692, z: 1, w: -0.02225311}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: 0}
@@ -363,10 +363,10 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 2.41
+    m_Value: 56.7
   intensity:
     m_OverrideState: 1
-    m_Value: 117.18
+    m_Value: 343.7
   scatter:
     m_OverrideState: 1
     m_Value: 1
@@ -375,7 +375,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.7418138, b: 0.2924527, a: 1}
+    m_Value: {r: 1, g: 0.74333334, b: 0.2999999, a: 1}
   highQualityFiltering:
     m_OverrideState: 1
     m_Value: 0
@@ -480,10 +480,10 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 7.21
+    m_Value: 15.99
   tintColor:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   bloomMip:
     m_OverrideState: 1
     m_Value: 1
@@ -937,13 +937,13 @@ MonoBehaviour:
   active: 1
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 71
   redOutGreenIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 12
   redOutBlueIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -9
   greenOutRedIn:
     m_OverrideState: 1
     m_Value: 0

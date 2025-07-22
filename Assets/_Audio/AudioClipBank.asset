@@ -22,3 +22,12 @@ MonoBehaviour:
   - code: Dash
     type: 1
     clip: {fileID: 8300000, guid: 14d731deca1f74048b1b6c13798cb0b8, type: 3}
+  - code: DungeonMusic
+    type: 0
+    clip: {fileID: 8300000, guid: c9377a28f42d3a740b45f145df23fda1, type: 3}
+  - code: ForestMusic
+    type: 0
+    clip: {fileID: 8300000, guid: e7cf04898addabd498f54df7eabe5c45, type: 3}
+  - code: BattleMusic
+    type: 0
+    clip: {fileID: 8300000, guid: aabfe79fc345bd44dbe9882d79ebda73, type: 3}

@@ -1,70 +1,144 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class MeleeAttack : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private ControllesSOSCript controles;
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject ataqueCortoAlcanceCollider;
     AnimatorStateInfo animatorStateInfo; // Variable para almacenar el estado actual del animador
     [SerializeField] private PlumaManager scriptPlumaAtaque; // Referencia al script de la cámara para invocar eventos de sacudida de cámara
+    [SerializeField] private AnimatorBrain animatorBrain; // Referencia al script AnimatorBrain para manejar las animaciones del jugador
 
 
 
     [Header("Melee Attack Settings")]
-    [SerializeField] private float damage;
-    //[SerializeField] private float tiempoDeAtaque = 0.2f; // Tiempo total del ataque
-    //private float tiempoActual = 0f; // Tiempo actual del ataque, se incrementará en cada frame durante el ataque
+
     [SerializeField]private bool estaAtacando = false; // Bandera para evitar múltiples ataques simultáneos
-    
+
+
+    [Header("parametros ATAQUE PESADO")]
+    [SerializeField] private float tiempoDeCarga = 1.0f;
+    [SerializeField]private float tiempoActual = 0f;
+    [SerializeField]private bool estaCargandoAtaque= false;
+
+   [SerializeField] private bool puedeAtacar = true; // Bandera para controlar si el jugador puede atacar
+
+    public Action EventoDesactivarAtaques; // Evento para notificar que se ha realizado un ataque pesado
+
+    private Coroutine CargaDeAtaqueCorrutina;
+
+
+    private void DesactivarAtaque()
+    {
+        if (puedeAtacar)
+        {
+            puedeAtacar = false; // Desactiva la capacidad de atacar
+
+        }
+    }
 
 
 
-
-   
 
 
     private void Awake()
     {
-        controles.EventoAtaqueEmpieza += Hit;
+        controles.EventoAtaqueEmpieza += EmpiezaAtaque;
+        controles.EventoAtaqueTermina += TerminaAtaque;
+        EventoDesactivarAtaques += DesactivarAtaque; // Suscribirse al evento de desactivación de ataques
         scriptPlumaAtaque.EventoReactivarAtaque += ReactivarBoolAtaque; // Suscribirse al evento de reactivación del ataque
     }
 
-    private void Start()
-    {
-        animator.CrossFade("ArmaBase", 0.5f);//nombre incorrecto pero al cambiar el nombre de la animacion no se cambia el nombre de la referencia NO SE PORQUE XD
 
-    }
     private void OnDisable()
     {
-        controles.EventoAtaqueEmpieza -= Hit;
+        controles.EventoAtaqueEmpieza -= EmpiezaAtaque;
+        controles.EventoAtaqueTermina -= TerminaAtaque;
+        EventoDesactivarAtaques -= DesactivarAtaque; // Desuscribirse del evento de desactivación de ataques
         scriptPlumaAtaque.EventoReactivarAtaque += ReactivarBoolAtaque; // Suscribirse al evento de reactivación del ataque
 
     }
 
 
-    private void Hit()
+    private void EmpiezaAtaque()
     {
+        if (estaCargandoAtaque || estaAtacando || !puedeAtacar) return;
 
-        if (!estaAtacando)
+        animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorRecargaAtaqueAnimacion, CapasAnimacion.CapaSuperior, true, true, 0.01f);
+
+        CargaDeAtaqueCorrutina = StartCoroutine(CargaDeAtaque()); // Iniciar la corrutina de carga de ataque al inicio
+        estaCargandoAtaque = true;
+    
+
+
+    }
+
+    IEnumerator CargaDeAtaque()
+    {
+        tiempoActual = 0f; // Reinicia el tiempo actual al inicio de la carga del ataque
+        while (tiempoActual < tiempoDeCarga) 
         {
-            animator.CrossFade("AtaqueLigero", 0.08f, 0,0f);//nombre incorrecto pero al cambiar el nombre de la animacion no se cambia el nombre de la referencia NO SE PORQUE XD
-            animator.Update(0f); // Asegura que el animador esté actualizado antes de verificar el estado
-            estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
+
+            tiempoActual += Time.deltaTime;
+            yield return null;
+
+
         }
 
 
+        yield return null;
+    }
+    private void TerminaAtaque()
+    {
+        if (estaAtacando || !puedeAtacar) return;
+
+        StopCoroutine(CargaDeAtaqueCorrutina); // Detiene la corrutina de carga de ataque si está en ejecución
+
+
+        if (!estaAtacando)
+        {
+            if (tiempoActual >= tiempoDeCarga)
+            {
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaquePesado, CapasAnimacion.CapaSuperior, true, true, 0f);
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaquePesado, CapasAnimacion.CapaInferior, true, true, 0f);
+
+                estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
+                estaCargandoAtaque = false;
+                EventoDesactivarAtaques?.Invoke(); // Invoca el evento para desactivar ataques
+                tiempoActual = 0f; // Reinicia el tiempo actual al inicio de la carga del ataque
+
+                //golpe pesado
+            }
+            else if (tiempoActual < tiempoDeCarga)
+            {
+                animator.Play("JugadorAtaqueCortoAlcanceAnimacion1",0,0f);
+                //animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueCortoAlcanceAnimacion1, CapasAnimacion.CapaSuperior, true, true, 0.01f);
+                estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
+                estaCargandoAtaque = false;
+                EventoDesactivarAtaques?.Invoke(); // Invoca el evento para desactivar ataques
+                tiempoActual = 0f; // Reinicia el tiempo actual al inicio de la carga del ataque
+
+
+
+            }
+
+
+
+        }
     }
 
 
     public void ReactivarBoolAtaque()
     {
         estaAtacando = false; // Marca que ya no se está atacando
-        animator.CrossFade("ArmaBase", 0.2f,0,0f);//nombre incorrecto pero al cambiar el nombre de la animacion no se cambia el nombre de la referencia NO SE PORQUE XD
-        animator.Update(0f);
+        puedeAtacar = true; // Reactiva la capacidad de atacar
     }
+
+    
 
 
 }

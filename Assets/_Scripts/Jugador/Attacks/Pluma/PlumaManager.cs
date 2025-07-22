@@ -4,8 +4,15 @@ public class PlumaManager : MonoBehaviour
 {
     [SerializeField] private GameObject plumaCollider;
 
-    public delegate void TipoAtaqueNormal();
-    public event TipoAtaqueNormal EventoReactivarAtaque;
+    public delegate void TipoEventoBasico();
+    public event TipoEventoBasico EventoReactivarAtaque;
+    public event TipoEventoBasico EventoDispararAtaqueLargoAlcance;
+    public event TipoEventoBasico EventoReactivarAtaqueLargoAlcance;
+    public event TipoEventoBasico EventoPoderLibroGiratorio;
+    public event TipoEventoBasico EventoReactivarPoderLibroGiratorio;
+
+
+
 
 
     public void ActivarColliderAtaque()
@@ -20,5 +27,33 @@ public class PlumaManager : MonoBehaviour
     public void ReactivarBoolAtaque()
     {
         EventoReactivarAtaque?.Invoke(); // Invoca el evento para reactivar el booleano de ataque
+        EventoReactivarAtaqueLargoAlcance?.Invoke();
+        EventoReactivarPoderLibroGiratorio?.Invoke(); // Invoca el evento para reactivar el poder del libro giratorio
+
+
+    }
+
+    public void ActivarDisparo()
+    {
+        EventoDispararAtaqueLargoAlcance?.Invoke();
+
+    }
+
+    public void ReactivarDisparo()
+    {
+        EventoReactivarAtaqueLargoAlcance?.Invoke();
+        EventoReactivarAtaque?.Invoke(); // Invoca el evento para reactivar el booleano de ataque
+        EventoReactivarPoderLibroGiratorio?.Invoke(); // Invoca el evento para reactivar el poder del libro giratorio
+
+    }
+    public void ReactivarAtaquesGiratorio() //para reactivar los ataques luego de terminar la animacion de ataque especial
+    {
+        EventoReactivarAtaqueLargoAlcance?.Invoke();
+        EventoReactivarAtaque?.Invoke(); // Invoca el evento para reactivar el booleano de ataque
+        EventoReactivarPoderLibroGiratorio?.Invoke(); // Invoca el evento para reactivar el poder del libro giratorio
+    }
+    public void ActivarPoderLibroGiratorio()
+    {
+        EventoPoderLibroGiratorio?.Invoke();
     }
 }
