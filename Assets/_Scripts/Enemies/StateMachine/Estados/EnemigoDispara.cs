@@ -11,6 +11,7 @@ public class EnemigoDispara : EnemigoBase
     public override void OnUpdateState(EnemigoStateManager contexto)
     {
         contexto.DistanciaActual = Vector3.Distance(contexto.transform.position, contexto.Objetivo.position);
+        contexto.VerObjetivo();
 
 
         if (contexto.DistanciaActual > contexto.RangoAtaqueLargoAlcance)
@@ -20,11 +21,10 @@ public class EnemigoDispara : EnemigoBase
         else if (contexto.DistanciaActual < contexto.RangoAtaqueLargoAlcance && contexto.DistanciaActual > contexto.RangoPerseguirCortoAlcance)
         {
 
-            contexto.gameObject.transform.LookAt(contexto.Objetivo.position);
             if (!contexto.IsAttacking)
             {
                 contexto.IsAttacking = true;
-                contexto.Animator.CrossFade("AtaqueLargoAlcance", 0.2f);
+                contexto.Animator.CrossFade("EnemigoAtaqueLargoAlcanceAnimacion", 0.2f);
                 // Aquí podrías llamar a un método para realizar el disparo
             }
 

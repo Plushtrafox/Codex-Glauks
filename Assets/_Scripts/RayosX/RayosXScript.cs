@@ -3,11 +3,11 @@ using UnityEngine;
 public class RayosXScript : MonoBehaviour
 {
     public static int idPosicion = Shader.PropertyToID("PosicionJugador");
-    public static int idSize = Shader.PropertyToID("Size");
+    public static int idSize = Shader.PropertyToID("_Size");
 
 
 
-    [SerializeField] private Material materialRayosXPared;
+    [SerializeField] private Material[] materialRayosXPared;
     [SerializeField] private Camera camara;
     [SerializeField] private LayerMask layerMaskRayosX;
     [SerializeField] private float distanciaRayosX = 100f;
@@ -21,17 +21,28 @@ public class RayosXScript : MonoBehaviour
 
         if (Physics.Raycast(rayo, out RaycastHit hit, distanciaRayosX, layerMaskRayosX))
         {
-            materialRayosXPared.SetFloat(idSize, 1);
+            foreach (var materialRayosXPared in materialRayosXPared)
+            {
+                print("deberia ponerse transparente");
+                materialRayosXPared.SetFloat(idSize, 1.5f);
+
+            }
         }
         else
         {
-            materialRayosXPared.SetFloat(idSize, 0);
+            foreach (var materialRayosXPared in materialRayosXPared)
+            {
+                print("deberia ponerse opaco");
+                materialRayosXPared.SetFloat(idSize, 0);
+            }
         }
 
 
 
-
-        materialRayosXPared.SetVector(idPosicion, direccion);
+        foreach (var materialRayosXPared in materialRayosXPared)
+        {
+            materialRayosXPared.SetVector(idPosicion, vista);
+        }
     }
 
 }

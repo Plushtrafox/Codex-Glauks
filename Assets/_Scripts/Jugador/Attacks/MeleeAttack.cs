@@ -67,7 +67,6 @@ public class MeleeAttack : MonoBehaviour
     private void EmpiezaAtaque()
     {
         if (estaCargandoAtaque || estaAtacando || !puedeAtacar) return;
-        print("se presiono para hacer un ataque a corto alcance");
 
         animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorRecargaAtaqueAnimacion, CapasAnimacion.CapaSuperior, true, true, 0.01f);
 
@@ -80,7 +79,6 @@ public class MeleeAttack : MonoBehaviour
 
     IEnumerator CargaDeAtaque()
     {
-        print("empezo corrutina de ataque");
         tiempoActual = 0f; // Reinicia el tiempo actual al inicio de la carga del ataque
         while (tiempoActual < tiempoDeCarga) 
         {
@@ -90,7 +88,6 @@ public class MeleeAttack : MonoBehaviour
 
 
         }
-        print("termino carga en corrutina");
 
 
         yield return null;
@@ -107,6 +104,8 @@ public class MeleeAttack : MonoBehaviour
             if (tiempoActual >= tiempoDeCarga)
             {
                 animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaquePesado, CapasAnimacion.CapaSuperior, true, true, 0f);
+                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaquePesado, CapasAnimacion.CapaInferior, true, true, 0f);
+
                 estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
                 estaCargandoAtaque = false;
                 EventoDesactivarAtaques?.Invoke(); // Invoca el evento para desactivar ataques
@@ -116,7 +115,8 @@ public class MeleeAttack : MonoBehaviour
             }
             else if (tiempoActual < tiempoDeCarga)
             {
-                animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueCortoAlcanceAnimacion1, CapasAnimacion.CapaSuperior, true, true, 0.01f);
+                animator.Play("JugadorAtaqueCortoAlcanceAnimacion1",0,0f);
+                //animatorBrain.ReproducirAnimacion(AnimacionesJugador.JugadorAtaqueCortoAlcanceAnimacion1, CapasAnimacion.CapaSuperior, true, true, 0.01f);
                 estaAtacando = true; // Marca que se está atacando para evitar múltiples ataques simultáneos
                 estaCargandoAtaque = false;
                 EventoDesactivarAtaques?.Invoke(); // Invoca el evento para desactivar ataques

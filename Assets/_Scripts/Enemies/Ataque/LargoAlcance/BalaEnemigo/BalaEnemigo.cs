@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BalaEnemigo : MonoBehaviour
@@ -7,7 +8,10 @@ public class BalaEnemigo : MonoBehaviour
     [SerializeField] private int cantidadDamage = 5; //daño que hace enemigo a jugador
 
 
-
+    private void Start()
+    {
+        StartCoroutine(DestruirBala()); // Inicia la corrutina para destruir la bala después de un tiempo
+    }
     private void OnTriggerEnter(Collider other)
     {
 
@@ -18,5 +22,11 @@ public class BalaEnemigo : MonoBehaviour
         Destroy(gameObject); // Destruye la bala después de la colisión
 
 
+    }
+    IEnumerator DestruirBala() // Método para destruir la bala después de un tiempo
+    {
+        yield return new WaitForSeconds(2f); // Espera 2 segundos antes de destruir la bala
+        Destroy(gameObject); // Destruye la bala
+        yield return null; // Finaliza la corrutina
     }
 }

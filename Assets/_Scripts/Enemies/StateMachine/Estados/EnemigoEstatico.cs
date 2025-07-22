@@ -9,7 +9,7 @@ public class EnemigoEstatico : EnemigoBase
     public override void OnEnterState(EnemigoStateManager contexto)
     {
         
-        contexto.Animator.CrossFade("Base", 0.5f); // Cambia la animación a Idle
+        contexto.Animator.CrossFade("EnemigoDePieAnimacion", 0.5f); // Cambia la animación a Idle
         contexto.AgenteMovimiento.isStopped = true;
         contexto.EstaEnVista = false; // resetea el booleano para que cuando vea al jugador otra vez muestre el UI de detectarlo
 

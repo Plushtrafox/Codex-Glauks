@@ -36,16 +36,19 @@ public class LongShoot : MonoBehaviour
 
     private void DisparoLargaDistancia()
     {
+        Quaternion rotacionProyectil = Quaternion.LookRotation(transform.forward);
 
-            GameObject bulletInstantiate = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
-            if (bulletInstantiate.TryGetComponent<Bullet>(out Bullet bulletScript))
-            {
-                bulletScript.CameraManager1 = cameraManager;
-            }
-            if (bulletInstantiate.TryGetComponent<Rigidbody>(out Rigidbody bulletRigidbody))
-            {
-                bulletRigidbody.AddForce(transform.forward * speed); // Aplica fuerza al proyectil
-            }
+
+        GameObject bulletInstantiate = Instantiate(bulletPrefab, spawnPoint.position, rotacionProyectil);
+        //bulletInstantiate.transform.rotation = Quaternion.Euler(bulletInstantiate.transform.rotation.x-90, bulletInstantiate.transform.rotation.y, bulletInstantiate.transform.rotation.z); // Asegura que el proyectil se oriente correctamente
+        if (bulletInstantiate.TryGetComponent<Bullet>(out Bullet bulletScript))
+        {
+            bulletScript.CameraManager1 = cameraManager;
+        }
+        if (bulletInstantiate.TryGetComponent<Rigidbody>(out Rigidbody bulletRigidbody))
+        {
+            bulletRigidbody.AddForce(transform.forward * speed); // Aplica fuerza al proyectil
+        }
         
     }
 

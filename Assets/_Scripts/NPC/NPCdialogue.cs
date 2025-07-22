@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class NPCdialogue : MonoBehaviour
 {
@@ -15,6 +16,18 @@ public class NPCdialogue : MonoBehaviour
     [SerializeField] private GameObject dialogueMark;
     [SerializeField] private GameObject dialoguePanel; // Panel de diálogo que se mostrará al jugador
     [SerializeField] private TMP_Text dialogueText; // Texto del diálogo que se mostrará en el panel
+
+    [Header("update NPC UI")]
+    [SerializeField] private Sprite imagenNPCSprite; // Imagen del NPC que se mostrará en el panel de diálogo
+    [SerializeField] private Image imagenNPCUI;
+    [SerializeField] private string nombreNPC;
+    [SerializeField] private TMP_Text nombreNPCUI;
+
+    [SerializeField] private DialogoManager dialogoManager;
+
+
+
+
 
 
     // Update is called once per frame
@@ -39,9 +52,15 @@ public class NPCdialogue : MonoBehaviour
     }
     private void StartDialogue()
     {
+        dialogoManager.OcultarHUD?.Invoke(); // Oculta el HUD si se está utilizando un sistema de HUD
+
         didDialogueStart = true; // Marca que el diálogo ha comenzado
         dialoguePanel.SetActive(true); // Activa el panel de diálogo
         dialogueMark.SetActive(false); // Desactiva el marcador de diálogo
+
+        imagenNPCUI.sprite = imagenNPCSprite; // Actualiza la imagen del NPC en el panel de diálogo
+        nombreNPCUI.text = nombreNPC; // Actualiza el nombre del NPC en el panel de diálogo
+
         lineIndex = 0; // Reinicia el índice de la línea del diálogo
         Time.timeScale = 0f;
         StartCoroutine (ShowLine()); // Inicia la corrutina para mostrar la primera línea del diálogo
@@ -59,6 +78,8 @@ public class NPCdialogue : MonoBehaviour
             dialoguePanel.SetActive(false);
             dialogueMark.SetActive(true); // Reactiva el marcador de diálogo
             Time.timeScale = 1f;
+
+            dialogoManager.MostrarHUD?.Invoke(); // Muestra el HUD si se está utilizando un sistema de HUD
         }
     }
     private IEnumerator ShowLine()
@@ -73,11 +94,9 @@ public class NPCdialogue : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print("entro algo");
 
         if (other.gameObject.CompareTag("Player"))
         {
-            print("entro jugador");
 
             isPlayerInRange = true;
             dialogueMark.SetActive(true); // Activa el marcador de diálogo cuando el jugador entra en rango

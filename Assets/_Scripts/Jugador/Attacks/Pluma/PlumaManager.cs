@@ -30,7 +30,6 @@ public class PlumaManager : MonoBehaviour
         EventoReactivarAtaqueLargoAlcance?.Invoke();
         EventoReactivarPoderLibroGiratorio?.Invoke(); // Invoca el evento para reactivar el poder del libro giratorio
 
-        print("Reactiva ataques");
 
     }
 

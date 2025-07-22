@@ -65,7 +65,7 @@ public class EnemigoStateManager : MonoBehaviour
 
 
     //estado actual, se usa el tipo del padre abstracto para poder referenciar a todos los hijos sin problema
-    EnemigoBase currentState;
+    [SerializeField] private EnemigoBase currentState;
 
     private void Start()
     {
@@ -94,6 +94,12 @@ public class EnemigoStateManager : MonoBehaviour
         currentState.OnEnterState(this);
     }
 
+
+    public void VerObjetivo()
+    {
+        Vector3 direccion = (Objetivo.position - transform.position);
+        transform.forward = new Vector3(direccion.x, 0, direccion.z).normalized; // Asegura que el enemigo mire al jugador
+    } 
 
 
     #region ataque corto alcance

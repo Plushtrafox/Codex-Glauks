@@ -15,7 +15,7 @@ public class Pilar : MonoBehaviour
     [SerializeField] private float distanciaActual;
     [SerializeField] private int ladoCorrecto = 4;
     [SerializeField] private int ladoActual = 1; // Lado actual del pilar, 0 para izquierda, 1 para derecha, etc.
-    [SerializeField] private Light luzPilar; // Referencia a la luz del pilar, si es necesario para efectos visuales
+    //[SerializeField] private Light luzPilar; // Referencia a la luz del pilar, si es necesario para efectos visuales
     [SerializeField] private ManagerScriptableObject Manager;
     
     //tenemos 4 lados 1,2,3,4
@@ -54,15 +54,13 @@ public class Pilar : MonoBehaviour
                 }
             }if (ladoActual == ladoCorrecto) // Verifica si el lado actual es el correcto
             {
-                luzPilar.intensity = 4f;
-                print("Lado correcto alcanzado: " + ladoActual);
+                //luzPilar.intensity = 4f;
                 Manager.ActualizarValores(true, false); // Actualiza el estado del pilar en el manager
                 // Aquí puedes agregar la lógica que deseas ejecutar cuando se alcanza el lado correcto
             }
             else
             {
-                luzPilar.intensity = 0f; // Ajusta la intensidad de la luz si no es el lado correcto
-                print("Lado incorrecto: " + ladoActual);
+                //luzPilar.intensity = 0f; // Ajusta la intensidad de la luz si no es el lado correcto
                 if ((ladoActual == ladoCorrecto +1)||(ladoActual == 1 && ladoCorrecto == 4 ))
                 {
                     Manager.ActualizarValores(false, true); // Actualiza el estado del pilar en el manager
@@ -70,7 +68,6 @@ public class Pilar : MonoBehaviour
             }
             transform.localRotation = rotacionFinal; // Asegura que la rotación final se aplique
             girando = false; // Si ya está en la rotación final, no hace nada
-            print("terminolarotacion");
             tiempoActual = 0f; // Reinicia el tiempo actual para futuros giros
             yield break;
 

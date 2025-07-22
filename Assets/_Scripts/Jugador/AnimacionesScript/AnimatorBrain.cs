@@ -118,7 +118,7 @@ public class AnimatorBrain : MonoBehaviour
             animacionesActivas[capaAIterar] = animacion;
             capaBloqueada[capaAIterar] = false;
 
-            animatorJugador.CrossFade("Movement", 0.1f);
+            animatorJugador.CrossFade("Movement", 0.1f, capaAIterar, 0f, 0f);
             return;
         }
 
