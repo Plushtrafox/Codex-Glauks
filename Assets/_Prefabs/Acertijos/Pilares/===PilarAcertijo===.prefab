@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3338254795009900663}
   - component: {fileID: 3210651106359804211}
+  - component: {fileID: 8580812735828508043}
   m_Layer: 0
   m_Name: ===PilarAcertijo===
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   - {fileID: 2902511600560228357}
   - {fileID: 7046742693576665363}
   - {fileID: 112998576183013492}
+  - {fileID: 7875386772356086778}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -121.66, z: 0}
 --- !u!114 &3210651106359804211
@@ -51,13 +53,87 @@ MonoBehaviour:
   TiempoGiro: 2
   girando: 0
   Controles: {fileID: 11400000, guid: d8f070608a1a5e04d91ac8e448417900, type: 2}
-  distanciaInteraccion: 2.1
+  distanciaInteraccion: 3.2
   jugadorTransform: {fileID: 0}
   distanciaActual: 0
   ladoCorrecto: 3
   ladoActual: 1
-  luzPilar: {fileID: 0}
   Manager: {fileID: 11400000, guid: 7d302b870ae9e634491a0df65ccc6836, type: 2}
+  mostrarUISO: {fileID: 11400000, guid: 4df681542cf24d74f817b3aa2c466217, type: 2}
+--- !u!135 &8580812735828508043
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4009930663704075614}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 247
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7235183116892546078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7875386772356086778}
+  - component: {fileID: 1951511193658529343}
+  m_Layer: 0
+  m_Name: ColliderTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7875386772356086778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235183116892546078}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3338254795009900663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1951511193658529343
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235183116892546078}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 247
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &510504348983580721
 PrefabInstance:
   m_ObjectHideFlags: 0

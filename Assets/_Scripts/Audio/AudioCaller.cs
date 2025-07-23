@@ -23,7 +23,9 @@ public class AudioCaller : MonoBehaviour
 
     private void Start()
     {
-        
+        //audioManager.PlayClipOneShot();
+
+
     }
 
 
