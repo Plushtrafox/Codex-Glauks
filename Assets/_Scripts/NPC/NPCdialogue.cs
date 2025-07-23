@@ -17,6 +17,7 @@ public class NPCdialogue : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel; // Panel de diálogo que se mostrará al jugador
     [SerializeField] private TMP_Text dialogueText; // Texto del diálogo que se mostrará en el panel
 
+
     [Header("update NPC UI")]
     [SerializeField] private Sprite imagenNPCSprite; // Imagen del NPC que se mostrará en el panel de diálogo
     [SerializeField] private Image imagenNPCUI;
@@ -26,29 +27,46 @@ public class NPCdialogue : MonoBehaviour
     [SerializeField] private DialogoManager dialogoManager;
 
 
+    [Header("Interactuar UI")]
+    [SerializeField] private MostrarUISO mostrarUISO; // ScriptableObject para manejar la visibilidad del HUD
+
+    [Header("referencia input system")]
+    [SerializeField] private ControllesSOSCript ControllesSOSCript; // ScriptableObject para manejar los controles del jugador
 
 
-
-
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E)) // Cambia la tecla según tu preferencia
+        ControllesSOSCript.EventoInteractuar += OnInteractuar; // Suscribe al evento de interacción del jugador
+    }
+
+    private void OnInteractuar()
+    {
+        if (isPlayerInRange) // Cambia la tecla según tu preferencia
         {
-            print("esta iniciando comunicacion");
             if (!didDialogueStart) // Si el diálogo no ha comenzado, inicia el diálogo
-                StartDialogue();
-            else if (dialogueText.text == dialogueLines[lineIndex]) // Cambia la tecla según tu preferencia
-            {
-                nextDialogueLine(); // Avanza a la siguiente línea del diálogo
+            { 
+            StartDialogue();
+            mostrarUISO.EventoOcultarUI?.Invoke(); // Oculta la UI de interacción si se está utilizando un sistema de HUD
             }
-            else
-            {
-                StopAllCoroutines(); // Detiene todas las corrutinas si no se está mostrando el diálogo
-                dialogueText.text = dialogueLines[lineIndex]; // Muestra la línea actual del diálogo sin efecto de escritura
-            }
+        else if (dialogueText.text == dialogueLines[lineIndex]) // Cambia la tecla según tu preferencia
+        {
+            nextDialogueLine(); // Avanza a la siguiente línea del diálogo
         }
-        
+        else
+        {
+            StopAllCoroutines(); // Detiene todas las corrutinas si no se está mostrando el diálogo
+            dialogueText.text = dialogueLines[lineIndex]; // Muestra la línea actual del diálogo sin efecto de escritura
+        }
+        }
+    }
+
+
+
+
+    private void OnDisable()
+    {
+        ControllesSOSCript.EventoInteractuar -= OnInteractuar; // Suscribe al evento de interacción del jugador
+
     }
     private void StartDialogue()
     {
@@ -78,7 +96,7 @@ public class NPCdialogue : MonoBehaviour
             dialoguePanel.SetActive(false);
             dialogueMark.SetActive(true); // Reactiva el marcador de diálogo
             Time.timeScale = 1f;
-
+            mostrarUISO.EventoMostrarUI?.Invoke();
             dialogoManager.MostrarHUD?.Invoke(); // Muestra el HUD si se está utilizando un sistema de HUD
         }
     }
@@ -100,6 +118,7 @@ public class NPCdialogue : MonoBehaviour
 
             isPlayerInRange = true;
             dialogueMark.SetActive(true); // Activa el marcador de diálogo cuando el jugador entra en rango
+            mostrarUISO.EventoMostrarUI?.Invoke(); // Muestra la UI de interacción si se está utilizando un sistema de HUD
             // Aquí puedes iniciar el diálogo o mostrar un mensaje al jugador
 
         }
@@ -111,6 +130,7 @@ public class NPCdialogue : MonoBehaviour
         {
             isPlayerInRange = false;
             dialogueMark.SetActive(false); // Desactiva el marcador de diálogo cuando el jugador sale del rango
+            mostrarUISO.EventoOcultarUI?.Invoke();
             // Aquí puedes finalizar el diálogo o ocultar el mensaje al jugador
         }
 

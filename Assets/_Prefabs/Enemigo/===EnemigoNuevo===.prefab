@@ -232,7 +232,7 @@ MonoBehaviour:
   rangoPerseguirLargoALcance: 12
   rangoAtaqueLargoAlcance: 10
   rangoPerseguirCortoAlcance: 5
-  rangoAtaqueCortoAlcance: 1
+  rangoAtaqueCortoAlcance: 2.5
 --- !u!114 &1510658972224453075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5285011582225806520
 Transform:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.02
+  m_Radius: 0.025
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5272901516598514242
 MonoBehaviour:

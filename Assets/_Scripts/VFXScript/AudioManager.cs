@@ -9,7 +9,7 @@ using AudioType = Utility.Audio.AudioType;
 
 namespace Utility.GameFlow
 {
-    public class audioManager : MonoBehaviour
+    public class AudioManager : MonoBehaviour
     {
         public AudioSource audioSource;
         //Structs
