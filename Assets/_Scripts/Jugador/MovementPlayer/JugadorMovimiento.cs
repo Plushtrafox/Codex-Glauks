@@ -14,7 +14,7 @@ public class JugadorMovimiento : MonoBehaviour
     [SerializeField] private ControllesSOSCript control;
     [SerializeField] private Rigidbody rigidbodyJugador;
     [SerializeField] private Camera camara;
-    [SerializeField] private audioManager audioManager; // Asegúrate de tener un AudioManager en tu escena
+    [SerializeField] private AudioManager audioManager; // Asegúrate de tener un AudioManager en tu escena
     [SerializeField] private Animator animatorJugador; // Referencia al Animator del jugador
     [SerializeField] private AnimatorBrain animatorBrain; // Referencia al AnimatorBrain del jugador
     [SerializeField] private Slider sliderDash; // Slider para mostrar el cooldown del dash (opcional, si lo necesitas en la UI)
@@ -105,8 +105,8 @@ public class JugadorMovimiento : MonoBehaviour
     {
        
         rigidbodyJugador.linearVelocity = velocidadDashNueva; // Aplicar la nueva velocidad del dash
-        ClipData clipData = audioManager.GetClipData("Dash"); // Obtener datos del clip de sonido de dash
-        audioManager.PlayClipOneShot(clipData); // Reproducir sonido de dash
+        ClipData clipData = AudioManager.GetClipData("Dash"); // Obtener datos del clip de sonido de dash
+        AudioManager.PlayClipOneShot(clipData); // Reproducir sonido de dash
 
         yield return new WaitForSeconds(tiempoDeDash); // Esperar el tiempo del dash
 
