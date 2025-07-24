@@ -18,6 +18,8 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     public event tipoEventoBotonSimple EventoAtaqueTermina;
     public event tipoEventoBotonSimple EventoPoder;
     public event tipoEventoBotonSimple EventoLargaDistancia;
+    public event tipoEventoBotonSimple EventoBotonEscape;
+
 
     public event tipoEventoAxisMove EventoMovimiento;
     public event tipoEventoAxis2 EventoDireccion;
@@ -105,5 +107,15 @@ public class ControllesSOSCript : ScriptableObject, Controles.IJugadorActions
     {
         
         EventoDireccion?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnBotonEscape(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            EventoBotonEscape?.Invoke();
+        }
+
+
     }
 }

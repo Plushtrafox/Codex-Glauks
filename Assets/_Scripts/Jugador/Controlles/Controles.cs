@@ -153,6 +153,15 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""BotonEscape"",
+                    ""type"": ""Button"",
+                    ""id"": ""37c18287-16fb-4125-a8ba-45afd671af67"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -353,6 +362,17 @@ public partial class @Controles: IInputActionCollection2, IDisposable
                     ""action"": ""Direccion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b23d12d-97e9-4f1b-aaa4-e075c7d63d65"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BotonEscape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -368,6 +388,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         m_Jugador_LargaDistancia = m_Jugador.FindAction("LargaDistancia", throwIfNotFound: true);
         m_Jugador_Giratorio = m_Jugador.FindAction("Giratorio", throwIfNotFound: true);
         m_Jugador_Direccion = m_Jugador.FindAction("Direccion", throwIfNotFound: true);
+        m_Jugador_BotonEscape = m_Jugador.FindAction("BotonEscape", throwIfNotFound: true);
     }
 
     ~@Controles()
@@ -455,6 +476,7 @@ public partial class @Controles: IInputActionCollection2, IDisposable
     private readonly InputAction m_Jugador_LargaDistancia;
     private readonly InputAction m_Jugador_Giratorio;
     private readonly InputAction m_Jugador_Direccion;
+    private readonly InputAction m_Jugador_BotonEscape;
     /// <summary>
     /// Provides access to input actions defined in input action map "Jugador".
     /// </summary>
@@ -494,6 +516,10 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Jugador/Direccion".
         /// </summary>
         public InputAction @Direccion => m_Wrapper.m_Jugador_Direccion;
+        /// <summary>
+        /// Provides access to the underlying input action "Jugador/BotonEscape".
+        /// </summary>
+        public InputAction @BotonEscape => m_Wrapper.m_Jugador_BotonEscape;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -541,6 +567,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Direccion.started += instance.OnDireccion;
             @Direccion.performed += instance.OnDireccion;
             @Direccion.canceled += instance.OnDireccion;
+            @BotonEscape.started += instance.OnBotonEscape;
+            @BotonEscape.performed += instance.OnBotonEscape;
+            @BotonEscape.canceled += instance.OnBotonEscape;
         }
 
         /// <summary>
@@ -573,6 +602,9 @@ public partial class @Controles: IInputActionCollection2, IDisposable
             @Direccion.started -= instance.OnDireccion;
             @Direccion.performed -= instance.OnDireccion;
             @Direccion.canceled -= instance.OnDireccion;
+            @BotonEscape.started -= instance.OnBotonEscape;
+            @BotonEscape.performed -= instance.OnBotonEscape;
+            @BotonEscape.canceled -= instance.OnBotonEscape;
         }
 
         /// <summary>
@@ -662,5 +694,12 @@ public partial class @Controles: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDireccion(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "BotonEscape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBotonEscape(InputAction.CallbackContext context);
     }
 }
