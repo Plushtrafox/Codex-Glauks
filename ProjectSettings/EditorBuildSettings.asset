@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/_Scenes/game over.unity
+    path: Assets/_Scenes/GameOver.unity
     guid: 3e81d8d07a574b644b318b242948a422
   - enabled: 1
     path: Assets/_Scenes/MapScenes/Forest.unity
