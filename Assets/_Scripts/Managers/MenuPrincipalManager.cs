@@ -11,7 +11,6 @@ public class MenuPrincipalManager : MonoBehaviour
     }
     public void IniciarJuego()
     {
-        print("deberia iniciar juego");
         SceneManager.LoadScene(1);
     }
     public void SalirJuego()

@@ -6,6 +6,10 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] private GameObject menuPerdida;
 
+    [SerializeField] private DialogoManager managerHUD;
+
+
+
 
 
 
@@ -22,6 +26,7 @@ public class GameOver : MonoBehaviour
 
     private void MostrarMenuPerdida()
     {
+        managerHUD.OcultarHUD?.Invoke(); // Oculta el HUD del jugador
         menuPerdida.SetActive(true);
         Time.timeScale = 0f; // Pausa el juego
 
@@ -29,7 +34,7 @@ public class GameOver : MonoBehaviour
 
     public void reiniciar()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("CALABOXO1");
 
         menuPerdida.SetActive(false);
         Time.timeScale = 1f; // Reinicia el tiempo del juego

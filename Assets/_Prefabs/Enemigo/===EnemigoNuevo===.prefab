@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 6659078941951645833}
   - component: {fileID: 6937509200585362529}
   - component: {fileID: 1510658972224453075}
+  - component: {fileID: 1971236310477102176}
   m_Layer: 6
   m_Name: ===EnemigoNuevo===
   m_TagString: Enemy
@@ -247,6 +248,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barraVidaUI: {fileID: 1191795850739986885}
   maxHealth: 20
+--- !u!114 &1971236310477102176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617037229104273347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d8637b5bf6a28499ab627fe56b4f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorOriginal: {r: 1, g: 1, b: 1, a: 1}
+  colorHerido: {r: 1, g: 0, b: 0, a: 1}
+  efectoRayo: {fileID: 1478637422629005351, guid: 058bcebe5d6797a45bf59c35aaaa921e, type: 3}
+  miRenderer: {fileID: 5822128777609713677}
 --- !u!1 &2638189335577628815
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5285011582225806520
 Transform:
   m_ObjectHideFlags: 0
@@ -1020,6 +1037,11 @@ Transform:
 --- !u!4 &4836414036291010649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3660331089067622499, guid: fd7651566e5bbf147a19e3b93733308d, type: 3}
+  m_PrefabInstance: {fileID: 1021614207509528516}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5822128777609713677 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6836987547023402953, guid: fd7651566e5bbf147a19e3b93733308d, type: 3}
   m_PrefabInstance: {fileID: 1021614207509528516}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &6865479369030648405 stripped

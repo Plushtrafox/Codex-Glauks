@@ -17,6 +17,10 @@ public class PlumaScript : MonoBehaviour
                 cameraManager.EventoShakeCamaraGolpe?.Invoke(); // Invoca el evento de sacudida de cámara al golpear un enemigo
                 cameraManager.EventoHitStop?.Invoke();
             }
+            if (other.gameObject.TryGetComponent<Enemigo>(out Enemigo objetivo))
+            {
+                objetivo.RecibirGolpe(); // Llama al método RecibirGolpe del script Enemigo
+            }
 
         }
     }

@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Enemigo : MonoBehaviour
 {
-    public int vida = 5;
     public Color colorOriginal = Color.white;
     public Color colorHerido = Color.red;
     public GameObject efectoRayo;
 
-    private Renderer miRenderer;
-
+    [SerializeField] private Renderer miRenderer;
+    
     private void Start()
     {
-        miRenderer = GetComponent<Renderer>();
+
         miRenderer.material.color = colorOriginal;
     }
 
@@ -24,19 +24,25 @@ public class Enemigo : MonoBehaviour
             Destroy(rayo, 0.5f);
         }
 
-        // ⚔️ Luego aplicamos el daño
-        vida--;
 
-        // 🎨 Cambia de color al segundo golpe
-        if (vida == 3)
-        {
-            miRenderer.material.color = colorHerido;
-        }
+        StartCoroutine(RecibirGolpeCoroutine());
 
-        // ☠️ Se destruye si ya no tiene vida
-        if (vida <= 0)
-        {
-            Destroy(gameObject);
-        }
+
     }
+
+    IEnumerator RecibirGolpeCoroutine()
+    {
+        print("entro en corrutina de recibir golpe");
+        // Cambia el color a rojo
+        miRenderer.material.color = colorHerido;
+        // Espera un segundo
+        yield return new WaitForSeconds(2f);
+        // Vuelve al color original
+        miRenderer.material.color = colorOriginal;
+
+        yield return null;
+    }
+
+
+
 }
