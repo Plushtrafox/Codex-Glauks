@@ -8,6 +8,10 @@ public class CameraChangeTrigger : MonoBehaviour
     [SerializeField] private tipoCamara camaraObjetivo; // Tipo de cámara que se activará al entrar en el trigger
     [SerializeField] private Transform ubicacionJugador; // Referencia al jugador
 
+
+    [SerializeField] private bool estaEscenario2 = false;
+
+
     private void OnTriggerExit(Collider other)
     {
         StartCoroutine(CalculoCambioCamaraCorrutina()); // Inicia la corrutina para calcular el cambio de cámara
@@ -16,15 +20,51 @@ public class CameraChangeTrigger : MonoBehaviour
 
     IEnumerator CalculoCambioCamaraCorrutina()
     {
+
+
+
+
+
         yield return new WaitForSeconds(0.5f);
-        if (ubicacionJugador.position.z > transform.position.z)
+
+
+        if (estaEscenario2)
         {
-            cameraManager.EventoCambioCamara?.Invoke(camaraObjetivo); // Invoca el evento de cambio de cámara
+            switch (camaraObjetivo)
+            {
+                case tipoCamara.Normal:
+
+                    if (ubicacionJugador.position.z > transform.position.z)
+                    {
+                        cameraManager.EventoCambioCamara?.Invoke(camaraObjetivo); // Invoca el evento de cambio de cámara
+                    }
+                    else if (ubicacionJugador.position.z < transform.position.z)
+                    {
+                        cameraManager.EventoCambioCamara?.Invoke(tipoCamara.entrada2); // Invoca el evento de cambio de cámara
+                    }
+
+                break;
+
+                    
+
+
+
+            }
         }
-        else if (ubicacionJugador.position.z < transform.position.z)
+
+        if (!estaEscenario2)
         {
-            cameraManager.EventoCambioCamara?.Invoke(camaraObjetivo==tipoCamara.Normal?tipoCamara.Escaleras:tipoCamara.Normal); // Invoca el evento de cambio de cámara
+            if (ubicacionJugador.position.z > transform.position.z)
+            {
+                cameraManager.EventoCambioCamara?.Invoke(camaraObjetivo); // Invoca el evento de cambio de cámara
+            }
+            else if (ubicacionJugador.position.z < transform.position.z)
+            {
+                cameraManager.EventoCambioCamara?.Invoke(camaraObjetivo == tipoCamara.Normal ? tipoCamara.Escaleras : tipoCamara.Normal); // Invoca el evento de cambio de cámara
+            }
         }
+
+
 
         yield return null;
     }
