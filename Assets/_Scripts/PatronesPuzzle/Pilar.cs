@@ -17,7 +17,8 @@ public class Pilar : MonoBehaviour
     [SerializeField] private int ladoActual = 1; // Lado actual del pilar, 0 para izquierda, 1 para derecha, etc.
     //[SerializeField] private Light luzPilar; // Referencia a la luz del pilar, si es necesario para efectos visuales
     [SerializeField] private ManagerScriptableObject Manager;
-    
+    [SerializeField] private MostrarUISO mostrarUISO; // Referencia al script que muestra la UI de interacción
+
     //tenemos 4 lados 1,2,3,4
     private void Awake()
     {
@@ -55,6 +56,7 @@ public class Pilar : MonoBehaviour
             }if (ladoActual == ladoCorrecto) // Verifica si el lado actual es el correcto
             {
                 //luzPilar.intensity = 4f;
+                print("Lado correcto alcanzado: " + ladoActual); // Imprime el lado correcto alcanzado
                 Manager.ActualizarValores(true, false); // Actualiza el estado del pilar en el manager
                 // Aquí puedes agregar la lógica que deseas ejecutar cuando se alcanza el lado correcto
             }
@@ -90,6 +92,32 @@ public class Pilar : MonoBehaviour
     private void Start()
     {
         Manager.AddPilar(); // Añade un nuevo pilar al manager al iniciar
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+
+            mostrarUISO.EventoMostrarUI?.Invoke(); // Muestra la UI de interacción si se está utilizando un sistema de HUD
+            // Aquí puedes iniciar el diálogo o mostrar un mensaje al jugador
+
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+
+            mostrarUISO.EventoOcultarUI?.Invoke();
+            // Aquí puedes finalizar el diálogo o ocultar el mensaje al jugador
+        }
+
     }
 
 }

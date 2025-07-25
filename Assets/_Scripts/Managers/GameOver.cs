@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] private HealthSO viditaSO;
+
     [SerializeField] private GameObject menuPerdida;
+
 
 
 
@@ -17,6 +19,7 @@ public class GameOver : MonoBehaviour
     }
 
 
+
     private void MostrarMenuPerdida()
     {
         menuPerdida.SetActive(true);
@@ -24,10 +27,11 @@ public class GameOver : MonoBehaviour
 
     }
 
-
     public void reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        menuPerdida.SetActive(false);
         Time.timeScale = 1f; // Reinicia el tiempo del juego
         viditaSO.Sanar(viditaSO.MaxHealth);
     }
