@@ -14,7 +14,6 @@ public class DisparoEnemigo : MonoBehaviour
         if (balaNueva.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             Vector3 direccionDisparo = (objetivo.position - puntoDisparo.position).normalized;
-            direccionDisparo.y = 0; // Asegura que el disparo sea horizontal
             rb.AddForce(direccionDisparo * velocidadDisparo, ForceMode.Impulse);
 
         }

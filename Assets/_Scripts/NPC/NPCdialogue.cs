@@ -34,6 +34,10 @@ public class NPCdialogue : MonoBehaviour
     [SerializeField] private ControllesSOSCript ControllesSOSCript; // ScriptableObject para manejar los controles del jugador
 
 
+    [Header("Titulo Final Demo")]
+    [SerializeField] private bool terminaDemoConversacion = false;
+
+
     private void Awake()
     {
         ControllesSOSCript.EventoInteractuar += OnInteractuar; // Suscribe al evento de interacción del jugador

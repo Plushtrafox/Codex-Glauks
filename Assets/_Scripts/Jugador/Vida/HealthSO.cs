@@ -1,14 +1,14 @@
+using System;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 [CreateAssetMenu(fileName = "HealthSO", menuName = "ScriptableObjects/HealthSO", order = 1)]
 public class HealthSO : ScriptableObject
 {
-    public delegate void tipoEventoPerdida();
-    public event tipoEventoPerdida EventoPerdida;
-
     public delegate void tipoEventoActualizarBarraUI();
     public event tipoEventoActualizarBarraUI EventoActualizarBarraUI;
+
+    public Action EventoPerdida;
 
     [SerializeField]private int health = 100;
     private int maxHealth = 100;

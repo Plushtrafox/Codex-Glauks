@@ -13,7 +13,6 @@ public class OnExit : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AnimatorBrain target = animator.GetComponentInParent<AnimatorBrain>();
-        Debug.Log(target);
         target.StartCoroutine(Wait());
 
         IEnumerator Wait()
